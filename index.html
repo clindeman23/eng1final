@@ -1,0 +1,1807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English I Grammar Review — The Hunger Games</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════
+   TOKENS & RESET
+══════════════════════════════════════ */
+:root {
+  --gold:#c9a84c; --gold-l:#e8d08a; --gold-xl:#f5e8c0; --gold-d:#8a6e2f; --gold-dd:#4a3c18;
+  --blood:#8b1a1a; --blood-d:#5a0f0f; --blood-l:#c04040;
+  --ink:#080604; --ink2:#100d08; --ink3:#1a1510; --ink4:#241d14; --ink5:#2e251a;
+  --parchment:#e8dcc8; --parchment-d:#c8b898; --parchment-dd:#a09070;
+  --slate:#3a3228; --slate-l:#504535;
+  --ok:#2d6e2d; --ok-l:#4aaa4a; --no:#8b1a1a; --no-l:#c02020;
+  --r:0 0 0; /* for rgba shorthand */
+  --fw:400; --fw-b:600;
+  --ff-display:'Cinzel Decorative',serif;
+  --ff-head:'Cinzel',serif;
+  --ff-body:'Crimson Text',serif;
+  --ff-fell:'IM Fell English',serif;
+  --radius:6px; --radius-lg:10px;
+  --shadow:0 4px 24px rgba(0,0,0,0.6);
+  --shadow-gold:0 0 40px rgba(201,168,76,0.15);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:var(--ff-body);background:var(--ink);color:var(--parchment);min-height:100vh;overflow-x:hidden;line-height:1.7;}
+::selection{background:var(--gold-d);color:var(--gold-xl);}
+
+/* ══════════════════════════════════════
+   PAGE ROUTER
+══════════════════════════════════════ */
+.page{display:none;min-height:100vh;animation:fadeIn .35s ease;}
+.page.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+
+/* ══════════════════════════════════════
+   HOME — CAPITOL
+══════════════════════════════════════ */
+#home{
+  background:var(--ink);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(201,168,76,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 50% 110%, rgba(139,26,26,0.08) 0%, transparent 70%);
+  position:relative;overflow:hidden;
+}
+
+/* Decorative top arch */
+.arch-bar{
+  height:4px; width:100%;
+  background:linear-gradient(90deg,transparent 0%,var(--gold-d) 20%,var(--gold) 50%,var(--gold-d) 80%,transparent 100%);
+}
+
+/* Pillar row */
+.pillar-row{
+  position:absolute;bottom:0;left:0;right:0;height:260px;
+  display:flex;align-items:flex-end;justify-content:space-between;
+  padding:0 3%;pointer-events:none;overflow:hidden;
+}
+.pillar{
+  flex-shrink:0;width:3.5%;
+  background:linear-gradient(180deg,var(--gold-dd) 0%,rgba(74,60,24,0.3) 100%);
+  border-top:3px solid var(--gold-d);
+  border-left:1px solid rgba(201,168,76,0.15);
+  border-right:1px solid rgba(201,168,76,0.15);
+}
+.pillar::before{
+  content:''; display:block; height:14px; width:110%;
+  margin-left:-5%; background:var(--gold-d); margin-top:-14px;
+}
+.p1{height:55%;} .p2{height:72%;} .p3{height:44%;} .p4{height:80%;}
+.p5{height:80%;} .p6{height:44%;} .p7{height:72%;} .p8{height:55%;}
+
+.home-wrap{
+  position:relative;z-index:2;
+  max-width:940px;margin:0 auto;
+  padding:3.5rem 2rem 6rem;
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+}
+
+/* Seal */
+.seal{
+  width:130px;height:130px;border-radius:50%;
+  border:2px solid var(--gold-d);
+  background:radial-gradient(circle at 40% 35%, #2a1f00 0%, var(--ink) 70%);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:2rem;
+  box-shadow:0 0 0 6px rgba(201,168,76,0.06), 0 0 60px rgba(201,168,76,0.2), inset 0 0 30px rgba(0,0,0,0.6);
+  animation:breathe 4s ease-in-out infinite;
+}
+@keyframes breathe{
+  0%,100%{box-shadow:0 0 0 6px rgba(201,168,76,0.06),0 0 60px rgba(201,168,76,0.2),inset 0 0 30px rgba(0,0,0,0.6);}
+  50%{box-shadow:0 0 0 10px rgba(201,168,76,0.04),0 0 90px rgba(201,168,76,0.35),inset 0 0 30px rgba(0,0,0,0.6);}
+}
+
+.eyebrow{
+  font-family:var(--ff-head);font-size:.65rem;letter-spacing:.35em;
+  color:var(--gold-d);text-transform:uppercase;margin-bottom:.75rem;
+}
+.home-title{
+  font-family:var(--ff-display);
+  font-size:clamp(2.2rem,7vw,4.5rem);
+  font-weight:900;line-height:1.05;letter-spacing:.03em;
+  background:linear-gradient(180deg,var(--gold-xl) 0%,var(--gold) 60%,var(--gold-d) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:.5rem;
+  filter:drop-shadow(0 2px 8px rgba(201,168,76,0.3));
+}
+.home-sub{
+  font-family:var(--ff-head);font-size:clamp(.85rem,2vw,1.1rem);
+  letter-spacing:.14em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:1.25rem;
+}
+.ornament{
+  display:flex;align-items:center;gap:1rem;margin:1rem 0 1.5rem;width:100%;max-width:500px;
+}
+.ornament-line{flex:1;height:1px;background:linear-gradient(to right,transparent,var(--gold-d));}
+.ornament-line.r{background:linear-gradient(to left,transparent,var(--gold-d));}
+.ornament-diamond{width:8px;height:8px;background:var(--gold-d);transform:rotate(45deg);}
+
+.quote-block{
+  font-family:var(--ff-fell);font-style:italic;
+  color:var(--parchment-dd);font-size:1.05rem;
+  max-width:540px;line-height:1.8;margin-bottom:3rem;
+  border-left:2px solid var(--gold-dd);padding-left:1.25rem;text-align:left;
+}
+
+/* District grid */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
+  gap:.9rem;width:100%;margin-bottom:1rem;
+}
+.d-card{
+  background:linear-gradient(135deg,var(--ink3) 0%,var(--ink4) 100%);
+  border:1px solid var(--slate);
+  border-top:2px solid var(--gold-dd);
+  border-radius:var(--radius);
+  padding:1.1rem 1rem 1rem;cursor:pointer;
+  transition:transform .2s,box-shadow .2s,border-top-color .2s;
+  position:relative;overflow:hidden;text-align:left;
+}
+.d-card::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(201,168,76,0.04) 0%,transparent 50%);
+  pointer-events:none;
+}
+.d-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 32px rgba(0,0,0,0.5), 0 0 0 1px var(--gold-dd);
+  border-top-color:var(--gold);
+}
+.d-card:active{transform:translateY(-1px);}
+.card-eyebrow{
+  font-family:var(--ff-head);font-size:.6rem;letter-spacing:.18em;
+  color:var(--gold-d);text-transform:uppercase;margin-bottom:.3rem;
+}
+.card-name{
+  font-family:var(--ff-head);font-size:.95rem;font-weight:700;
+  color:var(--gold-l);margin-bottom:.15rem;display:flex;align-items:center;gap:.4rem;
+}
+.card-icon{font-size:1rem;}
+.card-part{font-size:.78rem;color:var(--parchment-dd);line-height:1.3;margin-bottom:.2rem;}
+.card-industry{
+  font-family:var(--ff-fell);font-style:italic;
+  font-size:.78rem;color:var(--slate-l);
+}
+.card-score{
+  position:absolute;top:.75rem;right:.8rem;
+  font-family:var(--ff-head);font-size:.7rem;color:var(--gold-d);
+  background:var(--ink);padding:.15rem .4rem;border-radius:3px;
+  border:1px solid var(--slate);
+}
+
+/* Bottom row */
+.bottom-row{
+  display:flex;flex-direction:column;align-items:center;gap:.85rem;
+  width:100%;margin-top:.5rem;
+}
+.d6-slot{max-width:220px;width:100%;}
+.ak-card{
+  max-width:260px;width:100%;
+  background:linear-gradient(135deg,var(--blood-d) 0%,#3a0a0a 100%);
+  border:1px solid rgba(139,26,26,0.6);border-top:2px solid var(--blood-l);
+  border-radius:var(--radius);padding:1.1rem 1.25rem;cursor:pointer;
+  transition:transform .2s,box-shadow .2s;text-align:center;
+}
+.ak-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,0.5);}
+.ak-card .card-eyebrow{color:rgba(192,64,64,.8);}
+.ak-card .card-name{color:#f0a0a0;justify-content:center;}
+.ak-card .card-part{color:rgba(240,160,160,.6);text-align:center;}
+
+.total-score{
+  font-family:var(--ff-head);font-size:.85rem;letter-spacing:.06em;
+  color:var(--gold-d);margin-top:1rem;
+}
+.total-score strong{color:var(--gold);font-size:1.1rem;}
+
+/* ══════════════════════════════════════
+   DISTRICT PAGES
+══════════════════════════════════════ */
+.dist-page{background:var(--ink);}
+
+/* Top bar */
+.dist-bar{
+  height:3px;width:100%;
+  background:linear-gradient(90deg,var(--gold-dd),var(--gold),var(--gold-dd));
+}
+.dist-nav{
+  display:flex;align-items:center;gap:1rem;
+  padding:.9rem 2rem;border-bottom:1px solid var(--slate);
+  background:linear-gradient(180deg,var(--ink2) 0%,var(--ink) 100%);
+  flex-wrap:wrap;
+}
+.back-btn{
+  font-family:var(--ff-head);font-size:.65rem;letter-spacing:.1em;
+  text-transform:uppercase;padding:.45rem 1rem;
+  background:transparent;border:1px solid var(--slate);
+  color:var(--parchment-dd);cursor:pointer;border-radius:4px;
+  transition:all .15s;flex-shrink:0;
+}
+.back-btn:hover{border-color:var(--gold-d);color:var(--gold);}
+.dist-badge{
+  width:46px;height:46px;border-radius:50%;
+  border:2px solid var(--gold-dd);
+  background:radial-gradient(circle,var(--ink3),var(--ink));
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;flex-shrink:0;
+  box-shadow:0 0 20px rgba(201,168,76,0.1);
+}
+.dist-info{flex:1;}
+.dist-kicker{
+  font-family:var(--ff-head);font-size:.6rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold-d);
+}
+.dist-name{
+  font-family:var(--ff-head);font-size:1.15rem;font-weight:700;color:var(--gold-l);
+  line-height:1.2;
+}
+.dist-part{
+  font-family:var(--ff-fell);font-style:italic;font-size:.85rem;color:var(--parchment-dd);
+}
+.dist-pts{
+  font-family:var(--ff-head);font-size:.8rem;color:var(--parchment-dd);
+  letter-spacing:.04em;
+}
+.dist-pts strong{font-size:1.3rem;color:var(--gold);font-weight:700;}
+
+/* ── Review Panel ── */
+.review-panel{
+  background:linear-gradient(135deg,rgba(201,168,76,0.05) 0%,rgba(201,168,76,0.02) 100%);
+  border:1px solid var(--gold-dd);
+  border-left:4px solid var(--gold-d);
+  border-radius:var(--radius-lg);
+  margin:1.5rem 0;overflow:hidden;
+}
+.review-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 1.25rem;cursor:pointer;
+  background:rgba(201,168,76,0.04);
+  border-bottom:1px solid rgba(201,168,76,0.12);
+  user-select:none;
+}
+.review-header:hover{background:rgba(201,168,76,0.07);}
+.review-htitle{
+  font-family:var(--ff-head);font-size:.82rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--gold);
+  display:flex;align-items:center;gap:.6rem;
+}
+.review-htitle::before{
+  content:'📖';font-size:.9rem;
+}
+.review-chevron{
+  font-size:.75rem;color:var(--gold-d);
+  transition:transform .25s;
+}
+.review-panel.open .review-chevron{transform:rotate(180deg);}
+.review-body{
+  display:none;padding:1.25rem 1.5rem;
+}
+.review-panel.open .review-body{display:block;}
+
+/* concept cards inside review */
+.concept-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:.75rem;margin-top:.75rem;
+}
+.concept-card{
+  background:var(--ink3);border:1px solid var(--slate);
+  border-top:2px solid var(--gold-dd);border-radius:var(--radius);
+  padding:.85rem .9rem;
+}
+.concept-term{
+  font-family:var(--ff-head);font-size:.75rem;font-weight:700;
+  color:var(--gold);letter-spacing:.04em;margin-bottom:.35rem;
+  text-transform:uppercase;
+}
+.concept-def{
+  font-family:var(--ff-body);font-size:.88rem;
+  color:var(--parchment-dd);line-height:1.55;
+}
+.concept-ex{
+  font-family:var(--ff-fell);font-style:italic;font-size:.83rem;
+  color:var(--gold-d);margin-top:.4rem;padding-top:.4rem;
+  border-top:1px solid var(--slate);
+}
+
+.review-rule{
+  background:var(--ink3);border-left:3px solid var(--gold-dd);
+  border-radius:0 var(--radius) var(--radius) 0;
+  padding:.65rem 1rem;margin-bottom:.6rem;
+  font-size:.9rem;color:var(--parchment-d);line-height:1.6;
+}
+.review-rule strong{color:var(--gold-l);font-weight:600;}
+.review-intro{
+  font-family:var(--ff-fell);font-style:italic;
+  color:var(--parchment-dd);font-size:.95rem;
+  margin-bottom:.9rem;line-height:1.7;
+}
+
+/* ── Section body ── */
+.dist-body{padding:1.25rem 2rem 3rem;max-width:900px;margin:0 auto;}
+.directions{
+  background:var(--ink3);border:1px solid var(--slate);
+  border-left:3px solid var(--gold-d);border-radius:0 var(--radius) var(--radius) 0;
+  padding:.7rem 1rem;margin-bottom:1.25rem;
+  font-family:var(--ff-fell);font-style:italic;
+  color:var(--parchment-dd);font-size:.95rem;
+}
+
+/* ── Q items ── */
+.q-item{
+  margin-bottom:1.25rem;padding-bottom:1.25rem;
+  border-bottom:1px solid var(--slate);
+}
+.q-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.q-text{
+  font-family:var(--ff-body);font-size:1rem;
+  color:var(--parchment);margin-bottom:.55rem;line-height:1.6;
+}
+.q-num{
+  font-family:var(--ff-head);font-size:.72rem;color:var(--gold);
+  font-weight:700;margin-right:.35rem;letter-spacing:.04em;
+}
+
+/* Classify buttons */
+.classify-choices{display:flex;flex-wrap:wrap;gap:.4rem;}
+.classify-btn{
+  font-family:var(--ff-head);font-size:.7rem;letter-spacing:.04em;
+  text-transform:uppercase;padding:.35rem .8rem;
+  background:var(--ink4);border:1px solid var(--slate);
+  color:var(--parchment-dd);cursor:pointer;border-radius:4px;
+  transition:all .15s;
+}
+.classify-btn:hover{background:var(--ink3);border-color:var(--parchment-dd);color:var(--parchment);}
+
+/* MC buttons */
+.mc-options{display:flex;flex-direction:column;gap:.4rem;margin-top:.5rem;}
+.mc-btn{
+  text-align:left;background:var(--ink4);border:1px solid var(--slate);
+  color:var(--parchment);padding:.55rem .9rem;cursor:pointer;
+  border-radius:4px;font-size:.9rem;font-family:var(--ff-body);
+  transition:all .15s;line-height:1.45;width:100%;
+}
+.mc-btn:hover{background:var(--ink3);border-color:var(--parchment-dd);}
+.opt-l{
+  font-family:var(--ff-head);color:var(--gold);font-weight:700;
+  margin-right:.5rem;font-size:.72rem;letter-spacing:.04em;
+}
+
+/* State classes */
+.st-sel{background:var(--ink3)!important;border-color:var(--gold-d)!important;color:var(--gold-l)!important;}
+.st-ok{background:rgba(45,110,45,0.25)!important;border-color:var(--ok-l)!important;color:#b0f0b0!important;}
+.st-no{background:rgba(139,26,26,0.3)!important;border-color:var(--no-l)!important;color:#f0b0b0!important;}
+.st-reveal{background:rgba(45,110,45,0.15)!important;border-color:var(--ok-l)!important;color:#90e090!important;}
+.chk-ok{color:#6ee86e!important;border-bottom-color:#6ee86e!important;pointer-events:none;}
+.chk-no{color:#f07070!important;border-bottom-color:#f07070!important;pointer-events:none;}
+
+/* Feedback */
+.q-feedback{
+  font-size:.82rem;margin-top:.4rem;padding:.3rem .7rem;
+  border-radius:3px;font-family:var(--ff-body);font-style:italic;display:none;
+}
+.fb-ok{background:rgba(45,110,45,0.15);color:#90e090;border-left:2px solid var(--ok-l);}
+.fb-no{background:rgba(139,26,26,0.15);color:#f09090;border-left:2px solid var(--no-l);}
+
+/* Buttons */
+.btn-row{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-top:1.25rem;}
+.check-btn{
+  font-family:var(--ff-head);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
+  padding:.55rem 1.4rem;background:linear-gradient(135deg,var(--blood-d),var(--blood));
+  border:1px solid var(--blood-l);color:#ffcccc;cursor:pointer;
+  border-radius:4px;transition:all .2s;
+  box-shadow:0 2px 12px rgba(139,26,26,0.3);
+}
+.check-btn:hover{background:linear-gradient(135deg,var(--blood),#b02020);box-shadow:0 4px 20px rgba(139,26,26,0.5);}
+.reset-btn{
+  font-family:var(--ff-head);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;
+  padding:.5rem 1rem;background:transparent;border:1px solid var(--slate);
+  color:var(--parchment-dd);cursor:pointer;border-radius:4px;transition:all .15s;
+}
+.reset-btn:hover{border-color:var(--parchment-dd);color:var(--parchment);}
+.q-check-btn{
+  font-family:var(--ff-head);font-size:.65rem;letter-spacing:.07em;text-transform:uppercase;
+  padding:.3rem .75rem;background:transparent;border:1px solid var(--gold-dd);
+  color:var(--gold-d);cursor:pointer;border-radius:4px;transition:all .15s;margin-top:.4rem;
+}
+.q-check-btn:hover{background:var(--gold-dd);color:var(--gold-l);border-color:var(--gold-d);}
+.q-reset-btn{
+  font-family:var(--ff-head);font-size:.62rem;letter-spacing:.05em;text-transform:uppercase;
+  padding:.27rem .6rem;background:transparent;border:1px solid var(--slate);
+  color:var(--slate-l);cursor:pointer;border-radius:4px;transition:all .15s;margin-top:.4rem;
+}
+.q-reset-btn:hover{border-color:var(--parchment-dd);color:var(--parchment-dd);}
+
+.sec-result{
+  font-family:var(--ff-head);font-size:.82rem;padding:.6rem 1rem;
+  border-radius:4px;margin-top:1rem;display:none;letter-spacing:.03em;
+}
+
+/* ── Drag Drop ── */
+.drag-sentence{
+  font-family:var(--ff-body);font-size:1.05rem;line-height:2.3;
+  color:var(--parchment);user-select:none;
+}
+.comma-gap{cursor:pointer;font-weight:700;font-size:1.1em;transition:color .2s;}
+.dd-toolbar{display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem;flex-wrap:wrap;}
+.dd-lbl{
+  font-family:var(--ff-head);font-size:.65rem;color:var(--parchment-dd);
+  letter-spacing:.07em;text-transform:uppercase;
+}
+.dd-check{
+  font-family:var(--ff-head);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;
+  padding:.38rem .9rem;background:linear-gradient(135deg,var(--gold-dd),var(--gold-d));
+  border:1px solid var(--gold-d);color:var(--gold-xl);cursor:pointer;
+  border-radius:4px;transition:all .2s;
+}
+.dd-check:hover{background:linear-gradient(135deg,var(--gold-d),var(--gold));color:var(--ink);}
+.dd-reset{
+  font-family:var(--ff-head);font-size:.65rem;letter-spacing:.05em;text-transform:uppercase;
+  padding:.33rem .75rem;background:transparent;border:1px solid var(--slate);
+  color:var(--parchment-dd);cursor:pointer;border-radius:4px;transition:all .15s;
+}
+.dd-reset:hover{border-color:var(--parchment-dd);color:var(--parchment);}
+.hint-box{
+  display:none;font-size:.82rem;color:var(--gold-l);
+  font-family:var(--ff-fell);font-style:italic;margin-top:.4rem;
+  padding:.4rem .8rem;background:rgba(201,168,76,0.06);
+  border-left:2px solid var(--gold-d);border-radius:0 4px 4px 0;
+}
+.dd-result{
+  margin-top:.4rem;font-size:.85rem;
+  font-family:var(--ff-body);font-style:italic;
+}
+.dd-section-title{
+  font-family:var(--ff-head);font-size:.8rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--gold);margin:1.5rem 0 .75rem;
+  padding-top:1.25rem;border-top:1px solid var(--slate);
+  display:flex;align-items:center;gap:.5rem;
+}
+.dd-section-title::before{content:'';flex:1;height:1px;background:var(--slate);}
+.dd-section-title::after{content:'';flex:1;height:1px;background:var(--slate);}
+
+/* ── Part VII interactive ── */
+.p7-sentence{
+  font-family:var(--ff-body);font-size:1.05rem;line-height:2.1;
+  color:var(--parchment);margin-bottom:.35rem;
+}
+.title-token{
+  display:inline;cursor:pointer;border-radius:3px;padding:0 2px;
+  transition:all .15s;user-select:none;
+}
+.title-token.state-plain{color:var(--gold-l);border-bottom:1px dashed var(--gold-d);}
+.title-token.state-plain:hover{background:rgba(201,168,76,0.1);}
+.title-token.state-italic{color:var(--parchment);font-style:italic;border-bottom:1px solid rgba(232,220,200,0.35);}
+.title-token.state-quoted{color:var(--parchment);border-bottom:1px solid rgba(232,220,200,0.35);}
+.title-token.state-italic:hover,.title-token.state-quoted:hover{background:rgba(255,255,255,0.05);}
+.word-token{
+  display:inline;cursor:pointer;border-radius:3px;padding:0 1px;
+  transition:all .15s;user-select:none;
+}
+.word-token.state-plain{color:var(--parchment);border-bottom:1px dashed transparent;}
+.word-token.state-plain:hover{border-bottom-color:rgba(232,220,200,0.3);background:rgba(255,255,255,0.04);}
+.word-token.state-italic{color:var(--parchment);font-style:italic;border-bottom:1px solid rgba(232,220,200,0.35);}
+.word-token.state-quoted{color:var(--parchment);border-bottom:1px solid rgba(232,220,200,0.35);}
+.p7-divider{
+  font-family:var(--ff-head);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--parchment-dd);padding:.5rem 0 .75rem;
+  border-top:1px solid var(--slate);margin:.5rem 0 .75rem;
+}
+
+/* ── Answer Key ── */
+.ak-page{background:var(--ink);}
+.ak-nav{
+  display:flex;align-items:center;gap:1rem;
+  padding:1rem 2rem;border-bottom:1px solid var(--slate);
+  background:linear-gradient(180deg,var(--ink2),var(--ink));
+}
+.ak-headline{
+  font-family:var(--ff-head);font-size:1.1rem;letter-spacing:.08em;
+  text-transform:uppercase;color:#c04040;
+}
+.ak-body-wrap{padding:1.5rem 2rem 3rem;max-width:900px;margin:0 auto;}
+.ak-sect{margin-bottom:1.75rem;}
+.ak-sect-title{
+  font-family:var(--ff-head);font-size:.78rem;letter-spacing:.1em;color:var(--gold);
+  text-transform:uppercase;padding-bottom:.5rem;
+  border-bottom:1px solid var(--gold-dd);margin-bottom:.75rem;
+  display:flex;align-items:center;gap:.5rem;
+}
+.ak-sect-title::after{content:'';flex:1;height:1px;background:var(--gold-dd);}
+.ak-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:.3rem;}
+.ak-item{font-size:.85rem;color:var(--parchment-dd);padding:.2rem 0;font-family:var(--ff-body);}
+.ak-item strong{color:var(--gold-l);font-weight:600;}
+
+/* ── Footer ── */
+footer{
+  text-align:center;padding:2rem 1rem;
+  color:var(--parchment-dd);font-size:.8rem;font-family:var(--ff-fell);font-style:italic;
+  border-top:1px solid var(--slate);
+  background:linear-gradient(0deg,var(--ink2),var(--ink));
+}
+footer::before{
+  content:'⸻';display:block;color:var(--gold-dd);margin-bottom:.5rem;letter-spacing:.2em;
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ HOME ═══════════ -->
+<div class="page active" id="page-home">
+  <div id="home">
+    <div class="arch-bar"></div>
+    <div class="pillar-row">
+      <div class="pillar p1"></div><div class="pillar p2"></div>
+      <div class="pillar p3"></div><div class="pillar p4"></div>
+      <div class="pillar p5"></div><div class="pillar p6"></div>
+      <div class="pillar p7"></div><div class="pillar p8"></div>
+    </div>
+    <div class="home-wrap">
+      <div class="seal">
+        <svg viewBox="0 0 100 100" width="78" height="78" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="44" fill="none" stroke="#8a6e2f" stroke-width="1.5"/>
+          <line x1="50" y1="16" x2="50" y2="84" stroke="#c9a84c" stroke-width="2.2" stroke-linecap="round"/>
+          <polygon points="50,8 43,22 57,22" fill="#c9a84c"/>
+          <ellipse cx="50" cy="50" rx="10" ry="6.5" fill="#c9a84c" transform="rotate(-22,50,50)"/>
+          <circle cx="61" cy="37" r="7" fill="#c9a84c"/>
+          <polygon points="68,35 77,31 68,40" fill="#c9a84c"/>
+          <circle cx="63" cy="36" r="1.6" fill="#080604"/>
+          <path d="M48,46 Q26,28 15,20 Q29,37 42,49 Z" fill="#c9a84c"/>
+          <path d="M47,50 Q23,59 10,70 Q28,59 44,54 Z" fill="#c9a84c"/>
+          <path d="M41,54 Q28,73 24,84 Q35,69 45,58 Z" fill="#c9a84c"/>
+          <path d="M43,56 Q37,77 35,88 Q41,73 47,61 Z" fill="#c9a84c"/>
+          <path d="M46,57 Q45,79 46,89 Q48,75 50,63 Z" fill="#c9a84c"/>
+        </svg>
+      </div>
+      <div class="eyebrow">The Capitol Presents</div>
+      <div class="home-title">English I</div>
+      <div class="home-sub">Grammar Review</div>
+      <div class="ornament">
+        <div class="ornament-line"></div>
+        <div class="ornament-diamond"></div>
+        <div class="ornament-line r"></div>
+      </div>
+      <div class="quote-block">
+        "Welcome, welcome. The time has come to test your mastery of the English language. Select your district and begin. May your grammar be correct and your punctuation always in your favor."
+      </div>
+      <div class="grid" id="home-grid"></div>
+      <div class="bottom-row">
+        <div class="d6-slot" id="d6-slot"></div>
+        <div class="ak-card" onclick="goTo('page-ak')">
+          <div class="card-eyebrow">Reference</div>
+          <div class="card-name" style="justify-content:center;">📜 Answer Key</div>
+          <div class="card-part" style="text-align:center;">Complete answers for all 90 questions</div>
+        </div>
+      </div>
+      <div class="total-score">Total Score: <strong id="global-score">0</strong> / 90</div>
+    </div>
+  </div>
+  <footer>"Hope. It is the only thing stronger than fear." — President Snow &nbsp;·&nbsp; Mr. Lindeman &nbsp;·&nbsp; English I</footer>
+</div>
+
+<div id="dist-pages"></div>
+
+<!-- ═══════════ ANSWER KEY ═══════════ -->
+<div class="page ak-page" id="page-ak">
+  <div class="arch-bar"></div>
+  <div class="ak-nav">
+    <button class="back-btn" onclick="goTo('page-home')">← Home</button>
+    <div>
+      <div class="ak-headline">Answer Key</div>
+      <div style="font-family:var(--ff-fell);font-style:italic;font-size:.85rem;color:var(--parchment-dd);margin-top:.1rem;">All 90 questions — Parts I through IX</div>
+    </div>
+  </div>
+  <div class="ak-body-wrap" id="ak-body"></div>
+  <footer>Mr. Lindeman · English I · The Hunger Games Grammar Review</footer>
+</div>
+
+<script>
+// ═══════════════════════════════════════
+//  DISTRICT CONFIG
+// ═══════════════════════════════════════
+const districts = [
+  {id:'d12',num:'District 12',name:'The Seam',icon:'⛏',industry:'Coal Mining',pageId:'page-d12',pk:'p1',partName:'Part I — Parts of Speech'},
+  {id:'d8', num:'District 8', name:'The Mills',icon:'🧵',industry:'Textiles',pageId:'page-d8', pk:'p2',partName:'Part II — Parts of a Sentence'},
+  {id:'d1', num:'District 1', name:"The Capitol's Jewel",icon:'💎',industry:'Luxury Goods',pageId:'page-d1', pk:'p3',partName:'Part III — Capitalization'},
+  {id:'d2', num:'District 2', name:'The Fortress',icon:'🏛',industry:'Masonry & Weapons',pageId:'page-d2', pk:'p4',partName:'Part IV — Complete Sentences'},
+  {id:'d3', num:'District 3', name:'The Grid',icon:'⚡',industry:'Electronics',pageId:'page-d3', pk:'p5',partName:'Part V — Clauses'},
+  {id:'d4', num:'District 4', name:'The Shore',icon:'🎣',industry:'Fishing',pageId:'page-d4', pk:'p6',partName:'Part VI — Commas & Semicolons'},
+  {id:'d11',num:'District 11',name:'The Fields',icon:'🌾',industry:'Agriculture',pageId:'page-d11',pk:'p7',partName:'Part VII — Italics & Quotation Marks'},
+  {id:'d5', num:'District 5', name:'The Dynamo',icon:'🔋',industry:'Power',pageId:'page-d5', pk:'p8',partName:'Part VIII — Subject-Verb Agreement'},
+  {id:'d6', num:'District 6', name:'The Transit',icon:'🚂',industry:'Transportation',pageId:'page-d6', pk:'p9',partName:'Part IX — Effective Sentences'},
+];
+
+// ═══════════════════════════════════════
+//  REVIEW CONTENT
+// ═══════════════════════════════════════
+const reviews = {
+  p1:{
+    intro:'Every word in a sentence belongs to one of eight parts of speech. Knowing which role a word plays tells you how to use it correctly.',
+    concepts:[
+      {term:'Noun',def:'Names a person, place, thing, or idea.',ex:'Katniss, arena, courage'},
+      {term:'Pronoun',def:'Replaces a noun. Includes personal (he, she, they), indefinite (everyone, both), and demonstrative pronouns.',ex:'"Both lost their fathers." — Both is a pronoun.'},
+      {term:'Verb',def:'Shows action or state of being.',ex:'hunts, is, became'},
+      {term:'Adjective',def:'Describes a noun or pronoun. Answers which one, what kind, how many.',ex:'"The poorest district" — poorest is an adjective.'},
+      {term:'Adverb',def:'Describes a verb, adjective, or another adverb. Often ends in -ly. Answers how, when, where, to what extent.',ex:'unfortunately, most likely, very'},
+      {term:'Preposition',def:'Shows relationship between a noun and another word.',ex:'of, in, through, beyond'},
+      {term:'Conjunction',def:'Joins words, phrases, or clauses.',ex:'and, but, or, because, although'},
+      {term:'Interjection',def:'Expresses emotion. Usually followed by an exclamation point.',ex:'Ah! Wow! No!'},
+    ]
+  },
+  p2:{
+    intro:'A sentence is more than just a subject and verb — understanding each part tells you who is doing what, to whom, and what kind of thing it is.',
+    concepts:[
+      {term:'Subject',def:'Who or what the sentence is about.',ex:'"The Game Makers send fireballs." — Game Makers is the subject.'},
+      {term:'Predicate',def:'What the subject does or is. Includes the verb and everything attached to it.',ex:'"Katniss pulls out a piece of paper." — pulls out is the predicate.'},
+      {term:'Direct Object',def:'Receives the action of the verb. Answers what? or whom? after the verb.',ex:'"She uses a bow-and-arrow." — bow-and-arrow is the direct object.'},
+      {term:'Indirect Object',def:'To whom or for whom the action is done. Comes before the direct object.',ex:'"Katniss gives Rue her groosling." — Rue is the indirect object.'},
+      {term:'Pred. Nominative',def:'Follows a linking verb and renames the subject.',ex:'"Prim is her sister." — sister renames Prim.'},
+      {term:'Pred. Adjective',def:'Follows a linking verb and describes the subject.',ex:'"Katniss is angry." — angry describes Katniss.'},
+    ]
+  },
+  p3:{
+    intro:'Knowing when to capitalize — and when not to — is one of the most common grammar challenges. The key rule: proper nouns (specific names) are always capitalized; common nouns are not.',
+    rules:[
+      '<strong>Proper nouns</strong> — specific names of people, places, organizations, and titles used with a name: <em>District 12, Katniss Everdeen, Mount Carmel Academy</em>.',
+      '<strong>Titles of works</strong> — books, films, newspapers: capitalize all major words. <em>The Hunger Games, To Kill a Mockingbird</em>.',
+      '<strong>Titles before names</strong> — capitalize when used directly before a name: <em>President Snow</em>. Lowercase when used alone: <em>The president spoke.</em>',
+      '<strong>School subjects</strong> — capitalize only when they are specific course names (with a number) or proper nouns: <em>Art II, Latin</em> (a language), but <em>geometry, physical science</em>.',
+      '<strong>Seasons, directions</strong> — do NOT capitalize: <em>spring, summer, north, south</em> unless part of a proper name.',
+      '<strong>Family titles</strong> — capitalize when used as a name (<em>I asked Mother</em>), but lowercase with a possessive (<em>my mother</em>).',
+      '<strong>Holidays, historical events</strong> — always capitalize: <em>Easter, the Great Depression</em>.',
+    ]
+  },
+  p4:{
+    intro:'A complete sentence has a subject AND a predicate and expresses a complete thought. When either piece is missing or two sentences are jammed together incorrectly, you have a problem.',
+    concepts:[
+      {term:'Complete Sentence',def:'Has a subject, a predicate, and expresses a complete thought.',ex:'"Katniss volunteers to take her sister\'s place."'},
+      {term:'Fragment',def:'Missing a subject, a predicate, or both — OR is a dependent clause left alone.',ex:'"Which include giant dogs." — No subject performing the action.'},
+      {term:'Run-On',def:'Two or more independent clauses joined incorrectly — usually with just a comma (comma splice) or no punctuation at all.',ex:'"Rue reminds Katniss of Prim, Katniss greatly misses Prim." — Comma splice.'},
+    ],
+    rules:[
+      'To fix a <strong>run-on</strong>: use a period, a semicolon, or a coordinating conjunction (FANBOYS: for, and, nor, but, or, yet, so).',
+      'To fix a <strong>fragment</strong>: add the missing subject or verb, or attach it to a nearby complete sentence.',
+    ]
+  },
+  p5:{
+    intro:'A clause has a subject and a verb. The key question is whether it can stand alone as a complete sentence.',
+    concepts:[
+      {term:'Independent Clause',def:'Has a subject and verb AND expresses a complete thought. Can stand alone.',ex:'"Katniss\'s father taught her to use a bow-and-arrow."'},
+      {term:'Subordinate Clause',def:'Has a subject and verb but CANNOT stand alone — it depends on the rest of the sentence. Often begins with a subordinating conjunction.',ex:'"When Prim is chosen…" — begins with when, cannot stand alone.'},
+    ],
+    rules:[
+      '<strong>Common subordinating conjunctions</strong>: although, because, before, if, since, unless, until, when, while, who, which, that.',
+      'A subordinate clause at the <strong>beginning</strong> of a sentence is followed by a comma.',
+      'A subordinate clause at the <strong>end</strong> usually does NOT need a comma.',
+    ]
+  },
+  p6:{
+    intro:'Commas and semicolons are the most tested punctuation marks. Learn these eight rules and you will handle almost any situation.',
+    rules:[
+      '<strong>Series:</strong> Use commas to separate three or more items: <em>Katniss, Peeta, and Rue.</em>',
+      '<strong>Compound sentence:</strong> Use a comma before a coordinating conjunction (FANBOYS) joining two independent clauses: <em>Katniss survived, but Cato did not.</em>',
+      '<strong>Introductory element:</strong> Use a comma after an introductory word, phrase, or clause: <em>Unfortunately, Haymitch was drunk.</em>',
+      '<strong>Nonessential (appositive):</strong> Use commas around a word or phrase that renames a noun and could be removed: <em>My cousin, Amanda, was married.</em>',
+      '<strong>Interrupter:</strong> Use commas around a word that interrupts the sentence flow: <em>Katniss, not Peeta, volunteers.</em>',
+      '<strong>Direct address:</strong> Use a comma to set off the name of the person spoken to: <em>"Juliet, do you know the answer?"</em>',
+      '<strong>Dates & addresses:</strong> Use commas between day and year, and after the year in a sentence. Also between city and state.',
+      '<strong>Semicolon:</strong> Joins two closely related independent clauses <em>without</em> a conjunction: <em>Kate was born in 2013; William was born in 2015.</em>',
+    ]
+  },
+  p7:{
+    intro:'Italics and quotation marks signal to readers what kind of work a title belongs to. The rule is simple: big, standalone works get italics; small works that are part of a larger collection get quotation marks.',
+    concepts:[
+      {term:'Use Italics for…',def:'Long, standalone works: novels, films, TV series, newspapers, magazines, albums, works of art, ships.',ex:'The Hunger Games, People, Entertainment Tonight, Mona Lisa'},
+      {term:'Use Quotation Marks for…',def:'Short works or works within a larger work: episodes, short stories, poems, songs, articles, chapters.',ex:'"My Own Worst Enemy" (TV episode), "The Raven" (poem)'},
+      {term:'Single Quotes',def:'Used for a title within an already-quoted sentence (a quote inside a quote).',ex:'"Do you know who composed \'The Star Spangled Banner\'?"'},
+    ]
+  },
+  p8:{
+    intro:'A verb must agree with its subject in number, and a pronoun must agree with its antecedent. These rules hold even when other words come between subject and verb.',
+    rules:[
+      '<strong>Basic rule:</strong> Singular subject → singular verb. Plural subject → plural verb.',
+      '<strong>Phrases in between:</strong> Ignore prepositional phrases when finding the subject. <em>"Neither of the boys IS…"</em> — the subject is neither (singular), not boys.',
+      '<strong>Compound subjects with AND:</strong> Usually plural. <em>"Peeta and Katniss ARE…"</em>',
+      '<strong>Compound subjects with OR/NOR:</strong> Verb agrees with the closer subject. <em>"Neither she nor the twins WERE…"</em>',
+      '<strong>Indefinite pronouns — always singular:</strong> anyone, everyone, someone, no one, nobody, each, either, neither, one.',
+      '<strong>Indefinite pronouns — always plural:</strong> both, few, many, several.',
+      '<strong>Indefinite pronouns — either:</strong> all, any, most, none, some — depends on the noun they refer to.',
+      '<strong>Pronoun agreement:</strong> A pronoun must match its antecedent in number and gender. Use singular pronouns for singular antecedents.',
+    ]
+  },
+  p9:{
+    intro:'Effective sentences are clear, concise, and correctly joined. Two common problems are choppy sentences (too short and disconnected) and run-ons (improperly joined).',
+    rules:[
+      '<strong>Combine short sentences</strong> when ideas are closely related — use a conjunction, a semicolon, or a relative clause to show their connection.',
+      '<strong>Avoid comma splices</strong> — two independent clauses joined with only a comma. Fix with a semicolon, a period, or a coordinating conjunction.',
+      '<strong>Avoid wordiness</strong> — if an idea can be expressed in fewer words without losing meaning, cut.',
+      '<strong>Subordination</strong> — make the less important idea a subordinate clause: instead of "He studied. He passed," write "Because he studied, he passed."',
+      '<strong>Parallel structure</strong> — items in a list or pair must have the same grammatical form.',
+    ]
+  }
+};
+
+// ═══════════════════════════════════════
+//  DATA
+// ═══════════════════════════════════════
+const data = {
+  p1:{label:'Parts of Speech',type:'classify',
+    categories:['Noun','Pronoun','Verb','Adjective','Adverb','Preposition','Conjunction','Interjection'],
+    questions:[
+      {n:1,text:'"<u>Ah!</u>" Peeta cries when Katniss tries to clean out his wounds.',answer:'Interjection'},
+      {n:2,text:'When <u>her</u> father dies, Katniss takes over providing for her family.',answer:'Pronoun'},
+      {n:3,text:'Katniss\'s <u>worst</u> nightmare comes true when her sister is chosen for the Hunger Games.',answer:'Adjective'},
+      {n:4,text:'<u>Most likely</u>, Gale becomes increasingly angry as he watches Peeta and Katniss\'s romance develop.',answer:'Adverb'},
+      {n:5,text:'It is no secret that District 12 is the <u>poorest</u> of all the districts.',answer:'Adjective'},
+      {n:6,text:'Katniss <u>and</u> Gale work together to provide food for their families.',answer:'Conjunction'},
+      {n:7,text:'<u>Both</u> Katniss and Gale lost their fathers in a mining accident.',answer:'Pronoun'},
+      {n:8,text:'<u>Unfortunately</u> for Peeta and Katniss, their mentor is a drunk.',answer:'Adverb'},
+      {n:9,text:'The country <u>of</u> Panem consists of twelve districts.',answer:'Preposition'},
+      {n:10,text:'<u>Everyone</u> in the districts is required to watch the Hunger Games.',answer:'Pronoun'},
+    ]},
+  p2:{label:'Parts of a Sentence',type:'classify',
+    categories:['Subject','Predicate','Direct Object','Indirect Object','Predicate Nominative','Predicate Adjective'],
+    questions:[
+      {n:11,text:'When Katniss gets too far from the rest of the tributes, the <u>Game Makers</u> send fireballs at her.',answer:'Subject'},
+      {n:12,text:'Katniss is <u>surprised</u> to see that Peeta has formed an alliance with the Careers.',answer:'Predicate Adjective'},
+      {n:13,text:'Prim is Katniss\'s little <u>sister</u>.',answer:'Predicate Nominative'},
+      {n:14,text:'Katniss gives <u>Rue</u> her share of the groosling.',answer:'Indirect Object'},
+      {n:15,text:'Effie Trinket reaches into the glass ball and <u>pulls out</u> a piece of paper with Prim\'s name on it.',answer:'Predicate'},
+      {n:16,text:'There are <u>two children</u> who are chosen from each district to go into the Hunger Games.',answer:'Subject'},
+      {n:17,text:'Katniss is <u>angry</u> when Peeta declares on national television that he loves her.',answer:'Predicate Adjective'},
+      {n:18,text:'Katniss\'s mother becomes <u>comatose</u> when her husband dies.',answer:'Predicate Adjective'},
+      {n:19,text:'Katniss uses a <u>bow-and-arrow</u> to hunt.',answer:'Direct Object'},
+      {n:20,text:'When the Game Makers do not pay attention to her, Katniss shoots an <u>arrow</u> into a roasted pig\'s mouth.',answer:'Direct Object'},
+    ]},
+  p3:{label:'Capitalization',type:'mc4',
+    questions:[
+      {n:21,answer:'C',texts:['The leader of the country of panem is president Snow.','Gale calls Katniss catnip.','On March 23, 2012, The Hunger Games hit theaters.','Over the Easter Break, Sophie and I went to see the movie.']},
+      {n:22,answer:'A',texts:['We saw the movie at the AMC Palace Theater in Elmwood.','The author of this Trilogy is Suzanne Collins.','Suzanne Collins was one of the famous people on our Research Paper Topic List.','The Hunger Games used to be on the english ii Summer Reading List.']},
+      {n:23,answer:'D',texts:['Over the christmas holidays, regina reread all three books.','Jennifer Lawrence, who plays Katniss, starred as Mystique in X-Men: first class.','The actor who plays Peeta is in the movie version of Bridge To Terabithia.','The last book in the series is called Mockingjay.']},
+      {n:24,answer:'B',texts:['The teachers were excited when the physical science classes made smores.','Rebecca is taking Art II, Latin II, and geometry next year.','The English I classes write their research papers in the Fourth Quarter of the school year.','we can\'t wait for summer vacation!']},
+      {n:25,answer:'D',texts:['Venus is the second planet in the solar system, and earth is the third one.','It takes earth 365¼ days to go around the sun; every four years we have an extra day in february.','To Kill a Mockingbird begins, "when my brother Jem was nearly thirteen…','Will\'s favorite foods are bananas, yogurt, and French bread.']},
+      {n:26,answer:'A',texts:['When I was growing up, we had a cat named Lady.','She was named after my favorite disney movie, Lady And The Tramp.','One of her favorite activities was looking out the window for the Postman.','I would like another dog, but i know that the dog would not get the attention it deserves.']},
+      {n:27,answer:'B',texts:['Did you know that Louisiana is the only state that has Parishes?','The other forty-nine states use counties.','So here, we say Orleans parish; but in Mississippi, it would be called Orleans county.','Our school, Mount Carmel academy, is located on Milne boulevard.']},
+      {n:28,answer:'A',texts:['Every Mount Carmel student and teacher receives a MacBook Air.','For those who are not used to Apple Computers, the Mac takes some getting used to.','To Kill A Mockingbird takes place during the great depression.','On cinco de mayo, the Spanish National Honor Society cooks lunch for the teachers.']},
+      {n:29,answer:'A',texts:['The upperclassmen had a great time at Winter Formal; they are now looking forward to their proms.','Joshua\'s favorite season is the Fall because he has Saints season tickets.','The greek god of the sky is Zeus; his roman name is Jupiter.','Charlotte recently purchased a Honda civic.']},
+      {n:30,answer:'C',texts:['Who do you think will be the next President of the United States?','"My Aunt Rachel will not be able to attend," Carmen said.','"Can you please bring this to your grandmother?" Mother asked.','A press conference will be held by the Mayor at noon today.']},
+    ]},
+  p4:{label:'Complete Sentences',type:'classify',
+    categories:['Complete Sentence','Fragment','Run-On'],
+    questions:[
+      {n:31,text:'Did you know that Jennifer Lawrence had to dye her hair brown for The Hunger Games?',answer:'Complete Sentence'},
+      {n:32,text:'Actually, is a blonde.',answer:'Fragment'},
+      {n:33,text:'Katniss\'s goal is to win the Hunger Games, she only becomes concerned with saving Peeta when it is announced that two people can win.',answer:'Run-On'},
+      {n:34,text:'The Game Makers create muttations for the Hunger Games.',answer:'Complete Sentence'},
+      {n:35,text:'Which include giant dogs and tracker jackers.',answer:'Fragment'},
+      {n:36,text:'Katniss creates an alliance with Rue, a petite girl from District 11.',answer:'Complete Sentence'},
+      {n:37,text:'Rue reminds Katniss of Prim, Katniss greatly misses Prim.',answer:'Run-On'},
+      {n:38,text:'When she is not in the Hunger Games, Katniss\'s goal is to protect Prim.',answer:'Complete Sentence'},
+      {n:39,text:'Gale vows to make sure Katniss\'s family.',answer:'Fragment'},
+      {n:40,text:'Katniss has a poor relationship with her mother.',answer:'Complete Sentence'},
+    ]},
+  p5:{label:'Clauses',type:'classify',
+    categories:['Independent','Subordinate'],
+    questions:[
+      {n:41,text:'<u>When Prim is chosen for the Hunger Games</u>, Katniss volunteers to take her place.',answer:'Subordinate'},
+      {n:42,text:'<u>Katniss\'s father taught her how to use a bow-and-arrow.</u>',answer:'Independent'},
+      {n:43,text:'The last person <u>who is alive</u> is the winner of the Hunger Games.',answer:'Subordinate'},
+      {n:44,text:'Katniss wears a mockingjay pin <u>while she is in the arena</u>.',answer:'Subordinate'},
+      {n:45,text:'<u>Peeta and Katniss are fascinated by the outlandishness of the Capitol.</u>',answer:'Independent'},
+      {n:46,text:'Haymitch, <u>who is the only Hunger Games victor from District 12</u>, serves as mentor.',answer:'Subordinate'},
+      {n:47,text:'<u>Peeta decorates the cakes in his parents\' bakery.</u>',answer:'Independent'},
+      {n:48,text:'<u>The tributes from each district are given very limited time to say good-bye.</u>',answer:'Independent'},
+      {n:49,text:'<u>It is illegal to go beyond the fence that separates District 12 from the woods.</u>',answer:'Independent'},
+      {n:50,text:'However, <u>Katniss and Gale break this law to feed their families</u>.',answer:'Independent'},
+    ]},
+  p6:{label:'Commas & Semicolons',type:'mc4+dd',
+    questions:[
+      {n:51,answer:'C',texts:['Katniss who is the oldest child in her family takes a tesserae; this means her name goes into the tribute ball more times.','The Hunger Games tributes include Katniss, Peeta, Rue, Thresh, Cato and Glimmer.','"Come to finish me off, sweetheart?" Peeta says when Katniss finds him.','Katniss is determined to save Peeta but Peeta does not think the outlook is good.']},
+      {n:52,answer:'A',texts:['Foxface dies after eating nightlock, a type of deadly berry.','Katniss who is only sixteen takes on a lot of responsibility.','Katniss and Peeta feel that Haymitch is quite useless, however, he proves to be quite useful.','Cinna and Portia dress Katniss and Peeta in costumes that are on fire, this earns Katniss the nickname "The Girl on Fire."']},
+      {n:53,answer:'C',texts:['Katniss\'s prep team includes Flavius, Octavia, and Venia; and her stylist is Cinna, and Peeta\'s stylist is Portia.','Katniss is skilled at climbing trees; walking through the woods quietly; and shooting a bow-and-arrow; she is not good with sickness and injuries.','Our exam will be on Thursday, May 19, Friday, May 20, Monday, May 23, or Tuesday, May 24.','Do, you, think that there will be sentences about The Hunger Games on the exam?']},
+      {n:54,answer:'D',texts:['Mount Carmel Academy\'s address is 7027 Milne Boulevard, New Orleans, Louisiana, 70124.','On Monday, May 23 2016, the class of 2016 will graduate.','Amy graduated from Mount Carmel in May, of 2001.','Kate was born on January 14, 2013; William was born on March 7, 2015.']},
+      {n:55,answer:'A',texts:['Mrs. Bostick\'s dog was born on March 31, 2011.','Kate will be three and a half and William will be eighteen months.','If Mrs. Bostick has a boy, he won\'t be named Robert, Robert too common a name in her family.','Kristen\'s husband likes the name, Charlotte, for a girl, which is the name of Prince William and Duchess Kate\'s daughter.']},
+      {n:56,answer:'C',texts:['Dr. Joseph Campo D.D.S. is my dentist.','Kelsey\'s father\'s name is George Wilson Jr.','Her brother Henry will drive us to the dance next weekend.','We went to the grocery, and to the bank on Saturday.']},
+      {n:57,answer:'B',texts:['Matt will pitch; and Morgan will be catcher.','My cousin, Amanda, was married at the end of April.','In fact, her wedding weekend was the only weekend in April where it did not rain.','We wanted to go to Jazz Fest but the rain kept us away.']},
+      {n:58,answer:'A',texts:['Cherie, not Catherine, tutors Michael in math.','The cold, wet rainy day made Dylan want to nap on the couch and watch old movies.','Have you seen my blue, eyeglasses anywhere?','The tired old dog did not have the energy to bark at the strangers who knocked on the door.']},
+      {n:59,answer:'B',texts:['Strawberry snowballs are Allie\'s favorite; and Rebecca likes spearmint best.','We read the novel To Kill a Mockingbird this school year.','Have you ever read the epic poem, The Odyssey?','"Juliet do you know which books we will read next year?" Lisa asked.']},
+      {n:60,answer:'D',texts:['We have reached the last commas, and semicolons question.','"I will study my commas rules, and my semicolons rules, and my capitalization rules," Jane said.','"I will be sure to know my indefinite pronouns" Elise added.','"If we study our grammar review, we should do well," Leigh chimed in.']},
+    ],
+    dragDrop:[
+      {id:'dd1',label:'Sentence A',words:['Foxface','dies','after','eating','nightlock','a','type','of','deadly','berry.'],correctGaps:[4],hint:'Think about what kind of phrase follows the main noun — does it rename or describe it?'},
+      {id:'dd2',label:'Sentence B',words:['Katniss','not','Peeta','volunteers','to','take',"Prim's",'place.'],correctGaps:[0,2],hint:'When a phrase interrupts the main sentence, what punctuation goes on each side?'},
+      {id:'dd3',label:'Sentence C',words:['Effie','Haymitch','and','Cinna','all','help','Katniss','prepare.'],correctGaps:[0,1],hint:'How many commas do you need when listing three or more things?'},
+    ]},
+  p7:{label:'Italics & Quotation Marks',type:'interactive',
+    questions:[
+      {n:61,mode:'guided',sentence:[{type:'text',text:'Kate likes reading '},{type:'title',text:'People',correct:'italic'},{type:'text',text:' magazine.'}]},
+      {n:62,mode:'guided',sentence:[{type:'title',text:'Entertainment Tonight',correct:'italic'},{type:'text',text:' had a special on the actresses and actors in the movie.'}]},
+      {n:63,mode:'guided',sentence:[{type:'text',text:'Michael asked, \u201cDo you know what time the movie is for?\u201d'}]},
+      {n:64,mode:'guided',sentence:[{type:'text',text:'We are looking forward to taking Kate to see '},{type:'title',text:'Finding Dory',correct:'italic'},{type:'text',text:'. It will be her first movie theater experience.'}]},
+      {n:65,mode:'guided',sentence:[{type:'text',text:'\u201cDo you know who composed \u2018'},{type:'title',text:'The Star Spangled Banner',correct:'quoted'},{type:'text',text:'?\u2019\u201d Matt asked.'}]},
+      {n:66,mode:'open',sentence:[{type:'word',text:'Recently,'},{type:'word',text:'Mount'},{type:'word',text:'Carmel'},{type:'word',text:'put'},{type:'word',text:'on'},{type:'word',text:'a'},{type:'word',text:'production'},{type:'word',text:'of'},{type:'title',text:'The',group:0,correct:'italic'},{type:'title',text:'Addams',group:0,correct:'italic'},{type:'title',text:'Family',group:0,correct:'italic'},{type:'word',text:'.',nospace:true}]},
+      {n:67,mode:'open',sentence:[{type:'word',text:'Ever'},{type:'word',text:'since'},{type:'word',text:'visiting'},{type:'word',text:'France,'},{type:'word',text:"Marcus's"},{type:'word',text:'favorite'},{type:'word',text:'piece'},{type:'word',text:'of'},{type:'word',text:'art'},{type:'word',text:'is'},{type:'word',text:'the'},{type:'title',text:'Mona',group:0,correct:'italic'},{type:'title',text:'Lisa',group:0,correct:'italic'},{type:'word',text:'.',nospace:true}]},
+      {n:68,mode:'open',sentence:[{type:'word',text:'\u201cYes,'},{type:'word',text:'I'},{type:'word',text:'agree.'},{type:'word',text:'It'},{type:'word',text:'will'},{type:'word',text:'make'},{type:'word',text:'studying'},{type:'word',text:'more'},{type:'word',text:'manageable,\u201d'},{type:'word',text:'Kara'},{type:'word',text:'said.'}]},
+      {n:69,mode:'open',sentence:[{type:'word',text:'Jennifer'},{type:'word',text:'Lawrence'},{type:'word',text:'also'},{type:'word',text:'had'},{type:'word',text:'a'},{type:'word',text:'role'},{type:'word',text:'in'},{type:'word',text:'the'},{type:'word',text:'movie'},{type:'title',text:'X-Men:',group:0,correct:'italic'},{type:'title',text:'First',group:0,correct:'italic'},{type:'title',text:'Class',group:0,correct:'italic'},{type:'word',text:'and'},{type:'word',text:'in'},{type:'word',text:'the'},{type:'word',text:'T.V.'},{type:'word',text:'shows'},{type:'title',text:'Monk',group:1,correct:'quoted'},{type:'word',text:'and'},{type:'title',text:'Medium.',group:2,correct:'quoted'}]},
+      {n:70,mode:'open',sentence:[{type:'word',text:'Elizabeth'},{type:'word',text:'Banks,'},{type:'word',text:'who'},{type:'word',text:'plays'},{type:'word',text:'Effie'},{type:'word',text:'in'},{type:'title',text:'The',group:0,correct:'italic'},{type:'title',text:'Hunger',group:0,correct:'italic'},{type:'title',text:'Games',group:0,correct:'italic'},{type:'word',text:'movies,'},{type:'word',text:'appeared'},{type:'word',text:'in'},{type:'word',text:'an'},{type:'word',text:'episode'},{type:'word',text:'of'},{type:'word',text:'the'},{type:'word',text:'TV'},{type:'word',text:'show'},{type:'title',text:'Scrubs',group:1,correct:'italic'},{type:'word',text:'titled'},{type:'title',text:'My',group:2,correct:'quoted'},{type:'title',text:'Own',group:2,correct:'quoted'},{type:'title',text:'Worst',group:2,correct:'quoted'},{type:'title',text:'Enemy.',group:2,correct:'quoted'}]},
+    ]},
+  p8:{label:'Subject-Verb & Pronoun Agreement',type:'mc4',
+    questions:[
+      {n:71,answer:'C',texts:['Gale and Katniss hunt together to provide food for his or her families.','Although they work best as a team, each are capable of hunting alone.','Katniss uses her dad\'s bow-and-arrow to hunt.','Katniss have to hunt alone when Gale has to go to work in the mines.']},
+      {n:72,answer:'B',texts:['Katniss and Gale, who is best friends, look out for each other.','Peeta, who ices cakes at his parents\' bakery, also looks out for Katniss.','Both boys is interested in dating Katniss; however, she is not interested in marrying anyone.','Neither of the boys is really willing to give up on their hopes of being with Katniss.']},
+      {n:73,answer:'A',texts:['For the 74th Hunger Games, either a single tribute or a pair of tributes from the same district is allowed to win.','The Hunger Games is designed to remind the districts that the Capitol controls every aspect of residents\' lives.','Katniss wanted to drown a kitten because she didn\'t want to have to feed them, but Prim stepped in.','Neither Peeta\'s mother nor his father believe that he is capable of winning the Hunger Games.']},
+      {n:74,answer:'C',texts:['Katniss bring hope to all of the Districts, not just her own.','Some of the students loves The Hunger Games themed study guide, but some of them do not.','Creating this many sentences about The Hunger Games was surprisingly difficult.','The tributes from District 1 train for the Hunger Games throughout his or her lives.']},
+      {n:75,answer:'C',texts:['The freshmen class was looking forward to the Passing of the Colors ceremony.','The senior class is going to various colleges across the country.','With summer break around the corner, the four days of exams seem to last forever.','The vending machine would not accept any of the bills I offered it; the ten dollars I had was torn.']},
+      {n:76,answer:'C',texts:['The Southern Isles are where Prince Hans is from.','Curious George are popular children\'s books.','Few of the students were unaware of what the exam schedule was.','All of the senior class are looking forward to graduation.']},
+      {n:77,answer:'D',texts:['Each of the students was excited to get back their letter to herself.','Someone left their lunch in their locker for weeks.','The puppy whined when it could not find his or her ball.','None of the article was interesting.']},
+      {n:78,answer:'A',texts:['Does Jo or the twins want to study for the exam with us?','I don\'t think either are available on the day we are studying.','Every boy and girl look forward to the holidays.','Are Mickey Mouse or Minnie Mouse more popular?']},
+      {n:79,answer:'A',texts:['No one knows who stole the cookie from the cookie jar.','Did Chris or Jess leave their laptop behind?','I don\'t think it belong to either.','Do you have any idea whom the laptop could belong to? I would like to return them to their owner.']},
+      {n:80,answer:'D',texts:['"At last, the study guide are almost over!" the student exclaimed.','The students jumped up and cheered when the bell rang on his or her last day of school.','"There weren\'t an exam that I didn\'t feel confident about," she said.','Can you believe that we are going to be freshmen next year?']},
+    ]},
+  p9:{label:'Writing Effective Sentences',type:'mc2',
+    questions:[
+      {n:81,answer:'B',texts:['Peeta throws bread to Katniss; she is starving.','Peeta throws bread to Katniss when she is starving.']},
+      {n:82,answer:'B',texts:['The 74th Hunger Games is the last year for Gale\'s name to be in the tribute ball because the following year he will have to go to work in the mines.','The 74th Hunger Games is the last year for Gale\'s name to be in the tribute ball. Next year, he will be working in the mines.']},
+      {n:83,answer:'A',texts:['We enjoyed Catching Fire, which was released in 2013.','We enjoyed Catching Fire. It was released in 2013.']},
+      {n:84,answer:'B',texts:['This year\'s sophomores were eighth graders then, the juniors were freshmen.','This year\'s sophomores were eighth graders then, and the juniors were freshmen.']},
+      {n:85,answer:'B',texts:['After working on this study guide, Morgan decided that she will read The Hunger Games trilogy. She will do this over the summer.','After working on this study guide, Morgan decided that she will read The Hunger Games trilogy over the summer.']},
+      {n:86,answer:'B',texts:['Katniss was close to her father. Katniss is not close to her mother.','Katniss was close to her father, but she is not close to her mother.']},
+      {n:87,answer:'A',texts:['Katniss wears her mother\'s dress to the Reaping; the dress is her mother\'s attempt to mend her relationship with Katniss.','Katniss wears her mother\'s dress to the Reaping, the dress is her mother\'s attempt to mend her relationship with Katniss.']},
+      {n:88,answer:'B',texts:['Gale is angry about the way the Capitol treats the districts. Katniss accepts the districts\' treatment as a part of life.','Gale is angry about the way the Capitol treats the districts, but Katniss accepts the districts\' treatment as a part of life.']},
+      {n:89,answer:'A',texts:['Many of the girls who read The Hunger Games feel strongly about whether Peeta or Gale is best for Katniss.','Some of the girls who read The Hunger Games feel that Peeta is best for Katniss. Others feel that Gale is best for Katniss.']},
+      {n:90,answer:'A',texts:['Katniss has no intention of getting married and having children; Gale, on the other hand, feels that having a family would be nice.','Katniss has no intention of getting married and having children. Gale feels that having a family would be nice.']},
+    ]},
+};
+
+// ═══════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════
+const scores={p1:0,p2:0,p3:0,p4:0,p5:0,p6:0,p7:0,p8:0,p9:0};
+const answered={p1:{},p2:{},p3:{},p4:{},p5:{},p6:{},p7:{},p8:{},p9:{}};
+const p7State={};
+const ddState={dd1:new Set(),dd2:new Set(),dd3:new Set()};
+
+// ═══════════════════════════════════════
+//  TRANSITION EFFECTS
+// ═══════════════════════════════════════
+const effects = {
+  'page-home':   'gems',      // Capitol — falling jewels
+  'page-d12':    'fire',      // District 12 — coal fire sweeps across
+  'page-d8':     'threads',   // District 8 — textile threads
+  'page-d1':     'gems',      // District 1 — luxury gems
+  'page-d2':     'rubble',    // District 2 — stone/masonry chunks
+  'page-d3':     'sparks',    // District 3 — electric sparks
+  'page-d4':     'bubbles',   // District 4 — ocean bubbles
+  'page-d11':    'leaves',    // District 11 — falling leaves
+  'page-d5':     'sparks',    // District 5 — power sparks
+  'page-d6':     'smoke',     // District 6 — train smoke
+  'page-ak':     'embers',    // Answer key — glowing embers
+};
+
+let effectCanvas, effectCtx, effectRAF;
+
+function createOverlay() {
+  if (document.getElementById('fx-canvas')) return;
+  const c = document.createElement('canvas');
+  c.id = 'fx-canvas';
+  c.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;';
+  document.body.appendChild(c);
+  effectCanvas = c;
+  effectCtx = c.getContext('2d');
+}
+
+function resizeCanvas() {
+  effectCanvas.width = window.innerWidth;
+  effectCanvas.height = window.innerHeight;
+}
+
+function runEffect(type, onDone) {
+  createOverlay();
+  resizeCanvas();
+  if (effectRAF) { cancelAnimationFrame(effectRAF); effectRAF = null; }
+  effectCtx.clearRect(0, 0, effectCanvas.width, effectCanvas.height);
+
+  const W = effectCanvas.width, H = effectCanvas.height;
+  const particles = [];
+  let frame = 0;
+  const DURATION = 55;
+
+  if (type === 'fire') {
+    for (let i = 0; i < 110; i++) {
+      particles.push({
+        x: -60 + (W + 120) * (i / 110),
+        y: H + 20 + Math.random() * 30,
+        vx: 1.2 + Math.random() * 2,
+        vy: -(3 + Math.random() * 5),
+        life: 0,
+        maxLife: 30 + Math.random() * 25,
+        size: 12 + Math.random() * 22,
+        delay: Math.floor(i * 0.35),
+        hue: 10 + Math.random() * 30,
+      });
+    }
+    const tick = () => {
+      effectCtx.clearRect(0, 0, W, H);
+      frame++;
+      let alive = 0;
+      particles.forEach(p => {
+        if (frame < p.delay) { alive++; return; }
+        p.life++;
+        p.x += p.vx * 0.4;
+        p.y += p.vy;
+        p.vy *= 0.97;
+        p.vx += (Math.random() - 0.5) * 0.4;
+        const t = p.life / p.maxLife;
+        if (t >= 1) return;
+        alive++;
+        const alpha = t < 0.3 ? t / 0.3 : 1 - (t - 0.3) / 0.7;
+        const r = Math.floor(255);
+        const g = Math.floor(120 * (1 - t));
+        effectCtx.save();
+        effectCtx.globalAlpha = alpha * 0.85;
+        const grad = effectCtx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * (1 - t * 0.4));
+        grad.addColorStop(0, `rgb(255,${g+80},30)`);
+        grad.addColorStop(0.4, `rgb(${r},${g},0)`);
+        grad.addColorStop(1, 'transparent');
+        effectCtx.fillStyle = grad;
+        effectCtx.beginPath();
+        effectCtx.ellipse(p.x, p.y, p.size * 0.6, p.size * (1.2 - t * 0.5), 0, 0, Math.PI * 2);
+        effectCtx.fill();
+        effectCtx.restore();
+      });
+      if (alive > 0 && frame < DURATION + 30) effectRAF = requestAnimationFrame(tick);
+      else { effectCtx.clearRect(0, 0, W, H); onDone(); }
+    };
+    effectRAF = requestAnimationFrame(tick);
+  }
+
+  else if (type === 'gems') {
+    const gemColors = ['#e8d08a','#a78bfa','#60a5fa','#34d399','#f87171','#fb923c','#e879f9','#facc15','#f0abfc'];
+    const shapes = ['diamond','square','hex'];
+    for (let i = 0; i < 65; i++) {
+      particles.push({
+        x: Math.random() * W,
+        y: -30 - Math.random() * 200,
+        vx: (Math.random() - 0.5) * 2.5,
+        vy: 3 + Math.random() * 5,
+        rot: Math.random() * Math.PI * 2,
+        rotV: (Math.random() - 0.5) * 0.15,
+        size: 8 + Math.random() * 18,
+        color: gemColors[Math.floor(Math.random() * gemColors.length)],
+        shape: shapes[Math.floor(Math.random() * shapes.length)],
+        delay: Math.floor(Math.random() * 20),
+        alpha: 0,
+      });
+    }
+    const drawGem = (ctx, shape, size) => {
+      if (shape === 'diamond') {
+        ctx.beginPath(); ctx.moveTo(0, -size); ctx.lineTo(size * 0.6, 0);
+        ctx.lineTo(0, size * 1.2); ctx.lineTo(-size * 0.6, 0); ctx.closePath();
+      } else if (shape === 'square') {
+        ctx.beginPath(); ctx.rect(-size * 0.5, -size * 0.5, size, size);
+      } else {
+        ctx.beginPath();
+        for (let a = 0; a < 6; a++) { const ang = (a / 6) * Math.PI * 2; ctx.lineTo(Math.cos(ang) * size * 0.6, Math.sin(ang) * size * 0.6); }
+        ctx.closePath();
+      }
+    };
+    const tick = () => {
+      effectCtx.clearRect(0, 0, W, H);
+      frame++;
+      let alive = 0;
+      particles.forEach(p => {
+        if (frame < p.delay) { alive++; return; }
+        p.y += p.vy; p.x += p.vx; p.rot += p.rotV;
+        p.alpha = Math.min(1, p.alpha + 0.08);
+        if (p.y < H + 40) alive++;
+        effectCtx.save();
+        effectCtx.translate(p.x, p.y); effectCtx.rotate(p.rot);
+        effectCtx.globalAlpha = p.alpha * 0.9;
+        drawGem(effectCtx, p.shape, p.size);
+        effectCtx.fillStyle = p.color;
+        effectCtx.fill();
+        effectCtx.strokeStyle = 'rgba(255,255,255,0.5)';
+        effectCtx.lineWidth = 1;
+        effectCtx.stroke();
+        // shimmer
+        effectCtx.globalAlpha = p.alpha * 0.4;
+        effectCtx.fillStyle = 'rgba(255,255,255,0.7)';
+        effectCtx.beginPath();
+        effectCtx.ellipse(-p.size * 0.15, -p.size * 0.25, p.size * 0.15, p.size * 0.08, -0.5, 0, Math.PI * 2);
+        effectCtx.fill();
+        effectCtx.restore();
+      });
+      if (alive > 0 && frame < 80) effectRAF = requestAnimationFrame(tick);
+      else { effectCtx.clearRect(0, 0, W, H); onDone(); }
+    };
+    effectRAF = requestAnimationFrame(tick);
+  }
+
+  else if (type === 'threads') {
+    for (let i = 0; i < 50; i++) {
+      const colors = ['#8b5cf6','#a78bfa','#c4b5fd','#7c3aed','#ddd6fe','#f0abfc'];
+      particles.push({
+        x: Math.random() * W, y: -10,
+        vx: (Math.random() - 0.5) * 1.5, vy: 2.5 + Math.random() * 3,
+        len: 40 + Math.random() * 80, wave: Math.random() * Math.PI * 2,
+        waveAmp: 8 + Math.random() * 15, waveSpeed: 0.05 + Math.random() * 0.08,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        width: 1 + Math.random() * 2, delay: Math.floor(Math.random() * 25), alpha: 0,
+      });
+    }
+    const tick = () => {
+      effectCtx.clearRect(0, 0, W, H);
+      frame++;
+      let alive = 0;
+      particles.forEach(p => {
+        if (frame < p.delay) { alive++; return; }
+        p.y += p.vy; p.x += p.vx; p.wave += p.waveSpeed;
+        p.alpha = Math.min(1, p.alpha + 0.07);
+        if (p.y - p.len < H) alive++;
+        effectCtx.save();
+        effectCtx.globalAlpha = p.alpha * 0.8;
+        effectCtx.strokeStyle = p.color;
+        effectCtx.lineWidth = p.width;
+        effectCtx.beginPath();
+        for (let j = 0; j < p.len; j++) {
+          const ox = Math.sin(p.wave + j * 0.12) * p.waveAmp;
+          if (j === 0) effectCtx.moveTo(p.x + ox, p.y - j);
+          else effectCtx.lineTo(p.x + ox, p.y - j);
+        }
+        effectCtx.stroke();
+        effectCtx.restore();
+      });
+      if (alive > 0 && frame < 90) effectRAF = requestAnimationFrame(tick);
+      else { effectCtx.clearRect(0, 0, W, H); onDone(); }
+    };
+    effectRAF = requestAnimationFrame(tick);
+  }
+
+  else if (type === 'rubble') {
+    for (let i = 0; i < 55; i++) {
+      particles.push({
+        x: Math.random() * W, y: -20 - Math.random() * 150,
+        vx: (Math.random() - 0.5) * 4, vy: 2 + Math.random() * 6,
+        rot: Math.random() * Math.PI * 2, rotV: (Math.random() - 0.5) * 0.12,
+        w: 10 + Math.random() * 28, h: 8 + Math.random() * 20,
+        color: `hsl(${20 + Math.random() * 20},${15 + Math.random() * 20}%,${35 + Math.random() * 25}%)`,
+        delay: Math.floor(Math.random() * 20), alpha: 0,
+      });
+    }
+    const tick = () => {
+      effectCtx.clearRect(0, 0, W, H);
+      frame++;
+      let alive = 0;
+      particles.forEach(p => {
+        if (frame < p.delay) { alive++; return; }
+        p.y += p.vy; p.vy += 0.15; p.x += p.vx;
+        p.rot += p.rotV; p.alpha = Math.min(1, p.alpha + 0.09);
+        if (p.y < H + 30) alive++;
+        effectCtx.save();
+        effectCtx.translate(p.x, p.y); effectCtx.rotate(p.rot);
+        effectCtx.globalAlpha = p.alpha * 0.85;
+        effectCtx.fillStyle = p.color;
+        effectCtx.beginPath();
+        effectCtx.rect(-p.w / 2, -p.h / 2, p.w, p.h);
+        effectCtx.fill();
+        effectCtx.strokeStyle = 'rgba(255,255,255,0.1)';
+        effectCtx.lineWidth = 0.5;
+        effectCtx.stroke();
+        effectCtx.restore();
+      });
+      if (alive > 0 && frame < 80) effectRAF = requestAnimationFrame(tick);
+      else { effectCtx.clearRect(0, 0, W, H); onDone(); }
+    };
+    effectRAF = requestAnimationFrame(tick);
+  }
+
+  else if (type === 'sparks') {
+    for (let i = 0; i < 80; i++) {
+      const ang = Math.random() * Math.PI * 2;
+      const spd = 2 + Math.random() * 8;
+      const ox = W * 0.3 + Math.random() * W * 0.4;
+      const oy = H * 0.3 + Math.random() * H * 0.4;
+      particles.push({
+        x: ox, y: oy, vx: Math.cos(ang) * spd, vy: Math.sin(ang) * spd,
+        life: 0, maxLife: 20 + Math.random() * 30,
+        len: 6 + Math.random() * 14,
+        color: Math.random() > 0.5 ? '#60a5fa' : '#fbbf24',
+        delay: Math.floor(Math.random() * 15),
+      });
+    }
+    const tick = () => {
+      effectCtx.clearRect(0, 0, W, H);
+      frame++;
+      let alive = 0;
+      particles.forEach(p => {
+        if (frame < p.delay) { alive++; return; }
+        p.life++; p.x += p.vx; p.y += p.vy; p.vy += 0.08;
+        p.vx *= 0.97; p.vy *= 0.97;
+        const t = p.life / p.maxLife;
+        if (t >= 1) return;
+        alive++;
+        const alpha = (1 - t) * 0.9;
+        effectCtx.save();
+        effectCtx.globalAlpha = alpha;
+        effectCtx.strokeStyle = p.color;
+        effectCtx.lineWidth = 1.5 * (1 - t * 0.6);
+        effectCtx.shadowColor = p.color;
+        effectCtx.shadowBlur = 6;
+        effectCtx.beginPath();
+        effectCtx.moveTo(p.x, p.y);
+        effectCtx.lineTo(p.x - p.vx * p.len * 0.3, p.y - p.vy * p.len * 0.3);
+        effectCtx.stroke();
+        effectCtx.restore();
+      });
+      if (alive > 0 && frame < 70) effectRAF = requestAnimationFrame(tick);
+      else { effectCtx.clearRect(0, 0, W, H); onDone(); }
+    };
+    effectRAF = requestAnimationFrame(tick);
+  }
+
+  else if (type === 'bubbles') {
+    for (let i = 0; i < 60; i++) {
+      particles.push({
+        x: Math.random() * W, y: H + 20 + Math.random() * 100,
+        vy: -(1.5 + Math.random() * 3.5), vx: (Math.random() - 0.5) * 1.5,
+        r: 5 + Math.random() * 22,
+        wave: Math.random() * Math.PI * 2, waveAmp: 15 + Math.random() * 25,
+        waveSpeed: 0.04 + Math.random() * 0.06,
+        delay: Math.floor(Math.random() * 25), alpha: 0,
+      });
+    }
+    const tick = () => {
+      effectCtx.clearRect(0, 0, W, H);
+      frame++;
+      let alive = 0;
+      particles.forEach(p => {
+        if (frame < p.delay) { alive++; return; }
+        p.y += p.vy; p.wave += p.waveSpeed;
+        p.x += Math.sin(p.wave) * p.waveAmp * 0.04 + p.vx;
+        p.alpha = Math.min(0.75, p.alpha + 0.05);
+        if (p.y + p.r > 0) alive++;
+        effectCtx.save();
+        effectCtx.globalAlpha = p.alpha;
+        effectCtx.beginPath();
+        effectCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        effectCtx.strokeStyle = '#7dd3fc';
+        effectCtx.lineWidth = 1.5;
+        effectCtx.stroke();
+        const grad = effectCtx.createRadialGradient(p.x - p.r * 0.3, p.y - p.r * 0.3, 0, p.x, p.y, p.r);
+        grad.addColorStop(0, 'rgba(186,230,253,0.2)');
+        grad.addColorStop(1, 'rgba(14,165,233,0.05)');
+        effectCtx.fillStyle = grad;
+        effectCtx.fill();
+        // shimmer
+        effectCtx.beginPath();
+        effectCtx.arc(p.x - p.r * 0.3, p.y - p.r * 0.3, p.r * 0.2, 0, Math.PI * 2);
+        effectCtx.fillStyle = 'rgba(255,255,255,0.4)';
+        effectCtx.fill();
+        effectCtx.restore();
+      });
+      if (alive > 0 && frame < 90) effectRAF = requestAnimationFrame(tick);
+      else { effectCtx.clearRect(0, 0, W, H); onDone(); }
+    };
+    effectRAF = requestAnimationFrame(tick);
+  }
+
+  else if (type === 'leaves') {
+    const leafColors = ['#4ade80','#22c55e','#86efac','#a3e635','#bbf7d0','#d9f99d','#fbbf24','#f97316'];
+    for (let i = 0; i < 60; i++) {
+      particles.push({
+        x: Math.random() * W, y: -20 - Math.random() * 120,
+        vx: (Math.random() - 0.5) * 3, vy: 1.5 + Math.random() * 3,
+        rot: Math.random() * Math.PI * 2, rotV: (Math.random() - 0.5) * 0.1,
+        size: 8 + Math.random() * 16, wave: Math.random() * Math.PI * 2,
+        waveAmp: 20 + Math.random() * 30, waveSpeed: 0.05 + Math.random() * 0.05,
+        color: leafColors[Math.floor(Math.random() * leafColors.length)],
+        delay: Math.floor(Math.random() * 25), alpha: 0,
+      });
+    }
+    const drawLeaf = (ctx, size, color) => {
+      ctx.beginPath();
+      ctx.moveTo(0, -size); ctx.bezierCurveTo(size, -size * 0.5, size * 0.8, size * 0.5, 0, size);
+      ctx.bezierCurveTo(-size * 0.8, size * 0.5, -size, -size * 0.5, 0, -size);
+      ctx.closePath(); ctx.fillStyle = color; ctx.fill();
+      ctx.beginPath(); ctx.moveTo(0, -size); ctx.lineTo(0, size);
+      ctx.strokeStyle = 'rgba(0,0,0,0.15)'; ctx.lineWidth = 0.8; ctx.stroke();
+    };
+    const tick = () => {
+      effectCtx.clearRect(0, 0, W, H);
+      frame++;
+      let alive = 0;
+      particles.forEach(p => {
+        if (frame < p.delay) { alive++; return; }
+        p.y += p.vy; p.wave += p.waveSpeed;
+        p.x += Math.sin(p.wave) * p.waveAmp * 0.04 + p.vx;
+        p.rot += p.rotV; p.alpha = Math.min(0.9, p.alpha + 0.07);
+        if (p.y < H + 20) alive++;
+        effectCtx.save();
+        effectCtx.translate(p.x, p.y); effectCtx.rotate(p.rot);
+        effectCtx.globalAlpha = p.alpha;
+        drawLeaf(effectCtx, p.size, p.color);
+        effectCtx.restore();
+      });
+      if (alive > 0 && frame < 90) effectRAF = requestAnimationFrame(tick);
+      else { effectCtx.clearRect(0, 0, W, H); onDone(); }
+    };
+    effectRAF = requestAnimationFrame(tick);
+  }
+
+  else if (type === 'smoke') {
+    for (let i = 0; i < 40; i++) {
+      particles.push({
+        x: W * 0.1 + Math.random() * W * 0.2,
+        y: H * 0.4 + Math.random() * H * 0.3,
+        vx: 1.5 + Math.random() * 3, vy: -(0.5 + Math.random() * 1.5),
+        r: 15 + Math.random() * 40, life: 0,
+        maxLife: 40 + Math.random() * 30,
+        gray: 120 + Math.random() * 60, delay: Math.floor(Math.random() * 20),
+      });
+    }
+    const tick = () => {
+      effectCtx.clearRect(0, 0, W, H);
+      frame++;
+      let alive = 0;
+      particles.forEach(p => {
+        if (frame < p.delay) { alive++; return; }
+        p.life++; p.x += p.vx; p.y += p.vy; p.r += 0.5;
+        const t = p.life / p.maxLife;
+        if (t >= 1) return;
+        alive++;
+        const alpha = t < 0.2 ? t / 0.2 * 0.35 : (1 - t) * 0.35;
+        effectCtx.save();
+        effectCtx.globalAlpha = alpha;
+        const g2 = effectCtx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r);
+        g2.addColorStop(0, `rgba(${p.gray},${p.gray},${p.gray},0.6)`);
+        g2.addColorStop(1, 'transparent');
+        effectCtx.fillStyle = g2;
+        effectCtx.beginPath(); effectCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2); effectCtx.fill();
+        effectCtx.restore();
+      });
+      if (alive > 0 && frame < 80) effectRAF = requestAnimationFrame(tick);
+      else { effectCtx.clearRect(0, 0, W, H); onDone(); }
+    };
+    effectRAF = requestAnimationFrame(tick);
+  }
+
+  else if (type === 'embers') {
+    for (let i = 0; i < 70; i++) {
+      particles.push({
+        x: Math.random() * W, y: H + 10,
+        vx: (Math.random() - 0.5) * 2.5, vy: -(1 + Math.random() * 4),
+        r: 2 + Math.random() * 5, life: 0,
+        maxLife: 35 + Math.random() * 30,
+        hue: 15 + Math.random() * 25,
+        delay: Math.floor(Math.random() * 20),
+      });
+    }
+    const tick = () => {
+      effectCtx.clearRect(0, 0, W, H);
+      frame++;
+      let alive = 0;
+      particles.forEach(p => {
+        if (frame < p.delay) { alive++; return; }
+        p.life++; p.x += p.vx + Math.sin(p.life * 0.15) * 0.8;
+        p.y += p.vy; p.vy *= 0.99;
+        const t = p.life / p.maxLife;
+        if (t >= 1) return;
+        alive++;
+        const alpha = t < 0.2 ? t / 0.2 : (1 - t);
+        effectCtx.save();
+        effectCtx.globalAlpha = alpha * 0.9;
+        effectCtx.shadowColor = `hsl(${p.hue},100%,60%)`;
+        effectCtx.shadowBlur = 8;
+        effectCtx.fillStyle = `hsl(${p.hue + (1-t)*20},100%,${50 + (1-t)*30}%)`;
+        effectCtx.beginPath(); effectCtx.arc(p.x, p.y, p.r * (1 - t * 0.5), 0, Math.PI * 2); effectCtx.fill();
+        effectCtx.restore();
+      });
+      if (alive > 0 && frame < 80) effectRAF = requestAnimationFrame(tick);
+      else { effectCtx.clearRect(0, 0, W, H); onDone(); }
+    };
+    effectRAF = requestAnimationFrame(tick);
+  }
+
+  else { onDone(); }
+}
+
+// ═══════════════════════════════════════
+//  NAV
+// ═══════════════════════════════════════
+function goTo(id){
+  const effect = effects[id] || 'embers';
+  runEffect(effect, () => {
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const pg=document.getElementById(id);
+    if(pg){pg.classList.add('active');window.scrollTo(0,0);}
+    updateHome();
+  });
+}
+
+// ═══════════════════════════════════════
+//  BUILD HOME
+// ═══════════════════════════════════════
+function buildHome(){
+  const grid=document.getElementById('home-grid');
+  const d6slot=document.getElementById('d6-slot');
+  districts.forEach(d=>{
+    const c=document.createElement('div');
+    c.className='d-card'; c.id='hcard-'+d.pk; c.onclick=()=>goTo(d.pageId);
+    c.innerHTML=`<div class="card-eyebrow">${d.num} · ${d.industry}</div>
+      <div class="card-name"><span class="card-icon">${d.icon}</span>${d.name}</div>
+      <div class="card-part">${d.partName}</div>
+      <div class="card-score" id="hscore-${d.pk}">0/10</div>`;
+    if(d.id==='d6') d6slot.appendChild(c);
+    else grid.appendChild(c);
+  });
+}
+
+function updateHome(){
+  let total=0;
+  districts.forEach(d=>{
+    const el=document.getElementById('hscore-'+d.pk);
+    if(el) el.textContent=scores[d.pk]+'/10';
+    total+=scores[d.pk];
+  });
+  const gs=document.getElementById('global-score');
+  if(gs) gs.textContent=total;
+}
+
+// ═══════════════════════════════════════
+//  BUILD REVIEW PANEL
+// ═══════════════════════════════════════
+function buildReview(pk){
+  const r=reviews[pk]; if(!r) return '';
+  let inner='';
+  if(r.intro) inner+=`<p class="review-intro">${r.intro}</p>`;
+  if(r.concepts){
+    inner+=`<div class="concept-grid">`;
+    r.concepts.forEach(c=>{
+      inner+=`<div class="concept-card">
+        <div class="concept-term">${c.term}</div>
+        <div class="concept-def">${c.def}</div>
+        ${c.ex?`<div class="concept-ex">e.g. ${c.ex}</div>`:''}
+      </div>`;
+    });
+    inner+=`</div>`;
+  }
+  if(r.rules){
+    inner+=`<div style="margin-top:.75rem;">`;
+    r.rules.forEach(rule=>{
+      inner+=`<div class="review-rule">${rule}</div>`;
+    });
+    inner+=`</div>`;
+  }
+  return `<div class="review-panel" id="rp-${pk}">
+    <div class="review-header" onclick="toggleReview('${pk}')">
+      <div class="review-htitle">Concept Review — Study Before You Start</div>
+      <div class="review-chevron">▼</div>
+    </div>
+    <div class="review-body">${inner}</div>
+  </div>`;
+}
+
+function toggleReview(pk){
+  const panel=document.getElementById('rp-'+pk);
+  if(panel) panel.classList.toggle('open');
+}
+
+// ═══════════════════════════════════════
+//  BUILD ALL DISTRICT PAGES
+// ═══════════════════════════════════════
+function buildAllPages(){
+  const container=document.getElementById('dist-pages');
+  districts.forEach(d=>{
+    const pg=document.createElement('div');
+    pg.className='page dist-page'; pg.id=d.pageId;
+    const dir=getDir(d.pk);
+    const ctrl=getCtrl(d.pk);
+    pg.innerHTML=`
+      <div class="dist-bar"></div>
+      <div class="dist-nav">
+        <button class="back-btn" onclick="goTo('page-home')">← Home</button>
+        <div class="dist-badge">${d.icon}</div>
+        <div class="dist-info">
+          <div class="dist-kicker">${d.num} · ${d.industry}</div>
+          <div class="dist-name">${d.name}</div>
+          <div class="dist-part">${d.partName}</div>
+        </div>
+        <div class="dist-pts">Score<br><strong id="score-${d.pk}">0</strong>/10</div>
+      </div>
+      <div class="dist-body">
+        ${buildReview(d.pk)}
+        <div class="directions">${dir}</div>
+        <div id="qs-${d.pk}"></div>
+        ${ctrl}
+      </div>
+      <footer>${d.num} · ${d.name} · ${d.partName} · Mr. Lindeman</footer>`;
+    container.appendChild(pg);
+  });
+}
+
+function getDir(pk){
+  const m={
+    p1:'Identify the part of speech of the underlined word in each sentence.',
+    p2:'Identify the part of the sentence that is underlined in each example.',
+    p3:'In each group, choose the sentence that uses capitalization correctly.',
+    p4:'Decide whether each group of words is a complete sentence, a fragment, or a run-on.',
+    p5:'Determine whether the underlined words form an independent or a subordinate clause.',
+    p6:'Choose the sentence with correct comma and semicolon usage. Then try the drag-and-drop comma challenge below.',
+    p7:'Q61–65: titles are highlighted in gold — click to cycle through plain, italic, and quoted. Q66–70: every word is clickable; find and format the titles yourself.',
+    p8:'Choose the sentence that correctly applies subject-verb and pronoun-antecedent agreement.',
+    p9:'Choose the more effectively written sentence.',
+  };
+  return m[pk]||'';
+}
+
+function getCtrl(pk){
+  if(pk==='p7') return `<div class="btn-row"><button class="check-btn" onclick="checkAll_p7()">Check All</button><button class="reset-btn" onclick="resetSec('p7')">Reset All</button></div><div class="sec-result" id="result-p7"></div>`;
+  return `<div class="btn-row"><button class="check-btn" onclick="checkSec('${pk}')">Check My Answers</button><button class="reset-btn" onclick="resetSec('${pk}')">Reset</button></div><div class="sec-result" id="result-${pk}"></div>`;
+}
+
+// ═══════════════════════════════════════
+//  RENDER QUESTIONS
+// ═══════════════════════════════════════
+function renderAll(){
+  districts.forEach(d=>renderSection(d.pk));
+  buildDragDrop();
+  buildP7();
+}
+
+function renderSection(pk){
+  const sec=data[pk];
+  const el=document.getElementById('qs-'+pk); if(!el) return;
+  if(sec.type==='classify') el.innerHTML=renderClassify(pk,sec);
+  else if(sec.type==='mc4'||sec.type==='mc2') el.innerHTML=renderMC(pk,sec);
+  else if(sec.type==='mc4+dd') el.innerHTML=renderMC(pk,{type:'mc4',questions:sec.questions})+`<div class="dd-section-title">Comma Challenge</div><p style="font-size:.82rem;color:var(--parchment-dd);margin-bottom:.9rem;font-family:var(--ff-fell);font-style:italic;">Click between words to toggle a comma. Ghost commas show every possible spot.</p><div id="dd-area"></div>`;
+}
+
+function renderClassify(pk,sec){
+  return sec.questions.map(q=>`
+    <div class="q-item" id="qi-${pk}-${q.n}">
+      <div class="q-text"><span class="q-num">${q.n}.</span>${q.text}</div>
+      <div class="classify-choices">${sec.categories.map(c=>`<button class="classify-btn" data-key="${pk}" data-n="${q.n}" data-choice="${c}" onclick="selBtn(this,'classify')">${c}</button>`).join('')}</div>
+      <div class="q-feedback" id="fb-${pk}-${q.n}"></div>
+    </div>`).join('');
+}
+
+function renderMC(pk,sec){
+  const two=sec.type==='mc2';
+  return sec.questions.map(q=>{
+    const letters=two?['A','B']:['A','B','C','D'];
+    const opts=letters.map((l,i)=>`<button class="mc-btn" data-key="${pk}" data-n="${q.n}" data-choice="${l}" onclick="selBtn(this,'mc')"><span class="opt-l">${l}.</span>${q.texts[i]}</button>`).join('');
+    return `<div class="mc-item q-item" id="qi-${pk}-${q.n}">
+      <div class="q-text"><span class="q-num">${q.n}.</span> Choose the ${two?'better':'correct'} sentence:</div>
+      <div class="mc-options">${opts}</div>
+      <div class="q-feedback" id="fb-${pk}-${q.n}"></div>
+    </div>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════
+//  SELECTION
+// ═══════════════════════════════════════
+function selBtn(btn,mode){
+  const pk=btn.dataset.key, n=btn.dataset.n;
+  if(answered[pk][n]==='locked') return;
+  answered[pk][n]=btn.dataset.choice;
+  const parent=mode==='classify'?btn.closest('.classify-choices'):btn.closest('.mc-options');
+  parent.querySelectorAll('button').forEach(b=>b.classList.remove('st-sel','st-ok','st-no','st-reveal'));
+  btn.classList.add('st-sel');
+}
+
+// ═══════════════════════════════════════
+//  DRAG DROP
+// ═══════════════════════════════════════
+function buildDragDrop(){
+  const area=document.getElementById('dd-area'); if(!area) return;
+  area.innerHTML='';
+  data.p6.dragDrop.forEach(s=>{
+    const wrap=document.createElement('div');
+    wrap.style.cssText='margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--slate);';
+    const tb=document.createElement('div'); tb.className='dd-toolbar';
+    const lbl=document.createElement('span'); lbl.className='dd-lbl'; lbl.textContent=s.label+':';
+    const hBtn=document.createElement('button'); hBtn.className='dd-reset'; hBtn.textContent='Hint'; hBtn.style.marginTop='0';
+    hBtn.onclick=()=>{hintEl.style.display=hintEl.style.display==='none'?'block':'none';};
+    const cBtn=document.createElement('button'); cBtn.className='dd-check'; cBtn.textContent='Check'; cBtn.style.marginTop='0';
+    cBtn.onclick=()=>checkDD(s,resEl);
+    const rBtn=document.createElement('button'); rBtn.className='dd-reset'; rBtn.textContent='Reset'; rBtn.style.marginTop='0';
+    rBtn.onclick=()=>{ddState[s.id]=new Set();buildSent(s,sentDiv);resEl.textContent='';resEl.style.color='';};
+    tb.append(lbl,hBtn,cBtn,rBtn);
+    const instr=document.createElement('p');
+    instr.style.cssText='font-size:.8rem;color:var(--parchment-dd);margin-bottom:.5rem;font-family:var(--ff-fell);font-style:italic;';
+    instr.textContent='Click between words to place or remove a comma.';
+    const sentDiv=document.createElement('div'); sentDiv.className='drag-sentence'; sentDiv.id='sent-'+s.id;
+    buildSent(s,sentDiv);
+    const hintEl=document.createElement('div'); hintEl.className='hint-box'; hintEl.textContent=s.hint;
+    const resEl=document.createElement('div'); resEl.className='dd-result';
+    wrap.append(tb,instr,sentDiv,hintEl,resEl);
+    area.appendChild(wrap);
+  });
+}
+
+function buildSent(s,container){
+  container.innerHTML='';
+  s.words.forEach((w,i)=>{
+    const ws=document.createElement('span'); ws.textContent=w; ws.style.whiteSpace='nowrap';
+    container.appendChild(ws);
+    if(i<s.words.length-1){
+      const g=document.createElement('span');
+      g.className='comma-gap'; g.dataset.gapIdx=i; g.dataset.sid=s.id;
+      setGap(g,ddState[s.id].has(i));
+      g.addEventListener('click',()=>{
+        const idx=parseInt(g.dataset.gapIdx),sid=g.dataset.sid;
+        ddState[sid].has(idx)?ddState[sid].delete(idx):ddState[sid].add(idx);
+        setGap(g,ddState[sid].has(idx));
+      });
+      container.appendChild(g);
+    }
+  });
+}
+
+function setGap(g,has){
+  g.onmouseenter=null; g.onmouseleave=null;
+  if(has){
+    g.textContent=', ';
+    g.style.cssText='color:#ffffff;font-weight:700;cursor:pointer;font-size:1.1em;transition:color .2s;';
+    g.title='Click to remove';
+  } else {
+    g.textContent='\u00a0,\u00a0';
+    g.style.cssText='color:rgba(255,255,255,0.13);font-weight:700;cursor:pointer;font-size:1.1em;transition:color .2s;';
+    g.title='Click to place comma';
+    g.onmouseenter=()=>{g.style.color='rgba(255,255,255,0.5)';};
+    g.onmouseleave=()=>{g.style.color='rgba(255,255,255,0.13)';};
+  }
+}
+
+function checkDD(s,resEl){
+  const placed=ddState[s.id],correct=new Set(s.correctGaps);
+  let right=0; placed.forEach(p=>{if(correct.has(p))right++;});
+  const total=s.correctGaps.length,allOk=right===total&&placed.size===total;
+  document.querySelectorAll(`[data-sid="${s.id}"].comma-gap`).forEach(g=>{
+    const idx=parseInt(g.dataset.gapIdx),isP=placed.has(idx),isC=correct.has(idx);
+    g.onmouseenter=null; g.onmouseleave=null;
+    if(isP&&isC) g.style.color='#6ee86e';
+    else if(isP&&!isC) g.style.color='#f07070';
+    else if(!isP&&isC){g.textContent='\u00a0,\u00a0';g.style.color='rgba(240,100,100,0.5)';g.title='Comma needed here';}
+  });
+  resEl.style.color=allOk?'#6ee86e':'#f09090';
+  resEl.textContent=allOk?'✓ Perfect! All commas placed correctly.':`${right} of ${total} correct. Review and try again.`;
+}
+
+// ═══════════════════════════════════════
+//  PART VII
+// ═══════════════════════════════════════
+function buildP7(){
+  const el=document.getElementById('qs-p7'); if(!el) return;
+  el.innerHTML='';
+  let lastMode=null;
+  data.p7.questions.forEach(q=>{
+    p7State[q.n]=p7State[q.n]||{};
+    const mode=q.mode||'guided';
+    if(mode!==lastMode&&mode==='open'){
+      const div=document.createElement('div'); div.className='p7-divider';
+      div.textContent='Q66–70 — No highlights. Find and format the titles yourself.';
+      el.appendChild(div);
+    }
+    lastMode=mode;
+    const item=document.createElement('div'); item.className='q-item'; item.id=`qi-p7-${q.n}`;
+    const sent=document.createElement('div'); sent.className='p7-sentence';
+    const num=document.createElement('span'); num.className='q-num'; num.textContent=`${q.n}. `;
+    sent.appendChild(num);
+    if(mode==='guided'){
+      let ti=0;
+      q.sentence.forEach(tok=>{
+        if(tok.type==='text'){const s=document.createElement('span');s.textContent=tok.text;sent.appendChild(s);}
+        else{
+          const mi=ti++;
+          if(p7State[q.n][mi]===undefined) p7State[q.n][mi]='plain';
+          const s=document.createElement('span'); s.className='title-token';
+          s.dataset.qn=q.n; s.dataset.tidx=mi; s.title='Click: plain → italic → quoted';
+          applyT(s,p7State[q.n][mi],tok.text);
+          s.addEventListener('click',()=>{if(s.dataset.locked)return;const c=p7State[q.n][mi];const nx=c==='plain'?'italic':c==='italic'?'quoted':'plain';p7State[q.n][mi]=nx;applyT(s,nx,tok.text);});
+          sent.appendChild(s);
+        }
+      });
+    } else {
+      q.sentence.forEach((tok,ri)=>{
+        if(p7State[q.n][ri]===undefined) p7State[q.n][ri]='plain';
+        const s=document.createElement('span'); s.className='word-token state-plain';
+        s.dataset.qn=q.n; s.dataset.ridx=ri; s.title='Click: plain → italic → quoted';
+        if(ri>0&&!tok.nospace) sent.appendChild(document.createTextNode(' '));
+        applyW(s,p7State[q.n][ri],tok.text);
+        s.addEventListener('click',()=>{if(s.dataset.locked)return;const c=p7State[q.n][ri];const nx=c==='plain'?'italic':c==='italic'?'quoted':'plain';p7State[q.n][ri]=nx;applyW(s,nx,tok.text);});
+        sent.appendChild(s);
+      });
+    }
+    const fb=document.createElement('div'); fb.className='q-feedback'; fb.id=`fb-p7-${q.n}`;
+    const br=document.createElement('div'); br.style.cssText='display:flex;gap:.4rem;margin-top:.5rem;align-items:center;';
+    const qc=document.createElement('button'); qc.className='q-check-btn'; qc.textContent=`Check #${q.n}`; qc.onclick=()=>checkOne(q);
+    const qr=document.createElement('button'); qr.className='q-reset-btn'; qr.textContent='Reset'; qr.onclick=()=>resetOne(q);
+    br.append(qc,qr);
+    item.append(sent,fb,br); el.appendChild(item);
+  });
+}
+
+function applyT(span,state,text){
+  span.className='title-token state-'+state; span.classList.remove('chk-ok','chk-no');
+  if(state==='italic') span.innerHTML=`<em>${text}</em>`;
+  else if(state==='quoted') span.textContent=`"${text}"`;
+  else span.textContent=text;
+}
+function applyW(span,state,text){
+  span.className='word-token state-'+state; span.classList.remove('chk-ok','chk-no');
+  if(state==='italic') span.innerHTML=`<em>${text}</em>`;
+  else if(state==='quoted') span.textContent=`"${text}"`;
+  else span.textContent=text;
+}
+
+function checkOne(q){
+  const mode=q.mode||'guided'; let ok=true;
+  if(mode==='guided'){
+    const toks=q.sentence.filter(t=>t.type==='title');
+    const has=toks.length>0;
+    document.querySelectorAll(`[data-qn="${q.n}"].title-token`).forEach((s,i)=>{
+      const isOk=p7State[q.n][i]===toks[i].correct; if(!isOk) ok=false;
+      s.classList.remove('chk-ok','chk-no'); s.classList.add(isOk?'chk-ok':'chk-no'); s.dataset.locked='1';
+      if(!isOk) s.title='Should be '+toks[i].correct;
+    });
+    if(!has) ok=true;
+    showFb(`fb-p7-${q.n}`,ok,has?'✓ Correct!':'✓ No titles here — sentence is already correct.','✗ Check the red titles — incorrect formatting.');
+  } else {
+    document.querySelectorAll(`[data-qn="${q.n}"].word-token`).forEach(s=>{
+      const ri=parseInt(s.dataset.ridx),tok=q.sentence[ri];
+      const exp=(tok.type==='title')?tok.correct:'plain';
+      const isOk=(p7State[q.n][ri]||'plain')===exp; if(!isOk) ok=false;
+      s.classList.remove('chk-ok','chk-no'); s.classList.add(isOk?'chk-ok':'chk-no'); s.dataset.locked='1';
+    });
+    showFb(`fb-p7-${q.n}`,ok,'✓ Correct! All titles formatted properly.','✗ Not quite — red words need adjustment.');
+  }
+  recalcP7();
+}
+
+function resetOne(q){
+  p7State[q.n]={};
+  document.querySelectorAll(`[data-qn="${q.n}"].title-token,[data-qn="${q.n}"].word-token`).forEach(s=>{delete s.dataset.locked;});
+  const fb=document.getElementById(`fb-p7-${q.n}`); if(fb){fb.style.display='none';fb.textContent='';}
+  buildP7();
+}
+
+function recalcP7(){
+  let s=0;
+  data.p7.questions.forEach(q=>{
+    const mode=q.mode||'guided';
+    if(mode==='guided'){
+      const toks=q.sentence.filter(t=>t.type==='title');
+      const spans=document.querySelectorAll(`[data-qn="${q.n}"].title-token`);
+      const checked=[...spans].some(sp=>sp.dataset.locked);
+      if(!checked&&toks.length>0) return;
+      if(toks.length===0){s++;return;}
+      if(checked&&toks.every((t,i)=>p7State[q.n][i]===t.correct)) s++;
+    } else {
+      const spans=document.querySelectorAll(`[data-qn="${q.n}"].word-token`);
+      if(![...spans].some(sp=>sp.dataset.locked)) return;
+      if([...spans].every(sp=>sp.classList.contains('chk-ok'))) s++;
+    }
+  });
+  scores.p7=s;
+  const el=document.getElementById('score-p7'); if(el) el.textContent=s;
+  updateHome();
+}
+
+function checkAll_p7(){
+  data.p7.questions.forEach(q=>checkOne(q));
+  finalize('p7',scores.p7,10);
+}
+
+// ═══════════════════════════════════════
+//  CHECK / RESET SECTIONS
+// ═══════════════════════════════════════
+function showFb(id,ok,okMsg,noMsg){
+  const el=document.getElementById(id); if(!el) return;
+  el.style.display='block'; el.className='q-feedback '+(ok?'fb-ok':'fb-no');
+  el.textContent=ok?okMsg:noMsg;
+}
+
+function checkSec(pk){
+  const sec=data[pk]; let score=0;
+  sec.questions.forEach(q=>{
+    const n=q.n,user=answered[pk][n],correct=q.answer;
+    answered[pk][n]='locked';
+    const ok=user===correct; if(ok) score++;
+    const parent=document.querySelector(`[data-key="${pk}"][data-n="${n}"]`)?.closest('.classify-choices,.mc-options');
+    if(parent) parent.querySelectorAll('button').forEach(b=>{
+      b.classList.remove('st-sel','st-ok','st-no','st-reveal');
+      if(b.dataset.choice===correct) b.classList.add('st-reveal');
+      if(b.dataset.choice===user&&!ok) b.classList.add('st-no');
+    });
+    showFb(`fb-${pk}-${n}`,ok,'✓ Correct!',`✗ The answer is: ${correct}`);
+  });
+  scores[pk]=score;
+  const el=document.getElementById('score-'+pk); if(el) el.textContent=score;
+  updateHome(); finalize(pk,score,10);
+}
+
+function finalize(pk,score,total){
+  const res=document.getElementById('result-'+pk); if(!res) return;
+  res.style.display='block';
+  const pct=Math.round(score/total*100);
+  if(score===total){res.style.background='rgba(45,110,45,0.2)';res.style.color='#90e090';res.style.border='1px solid #4aaa4a';res.textContent=`Victory! ${score}/${total} — A perfect tribute score!`;}
+  else if(score>=Math.round(total*.7)){res.style.background='rgba(180,120,0,0.15)';res.style.color='var(--gold-l)';res.style.border='1px solid var(--gold-d)';res.textContent=`${score}/${total} (${pct}%) — Strong performance, tribute.`;}
+  else{res.style.background='rgba(139,26,26,0.2)';res.style.color='#f09090';res.style.border='1px solid var(--no-l)';res.textContent=`${score}/${total} (${pct}%) — Keep training, tribute.`;}
+}
+
+function resetSec(pk){
+  answered[pk]={};
+  if(pk==='p7'){
+    data.p7.questions.forEach(q=>{p7State[q.n]={};});
+    scores.p7=0;
+    const el=document.getElementById('score-p7');if(el)el.textContent='0';
+    const r=document.getElementById('result-p7');if(r){r.style.display='none';r.textContent='';}
+    buildP7(); updateHome(); return;
+  }
+  const sec=data[pk];
+  sec.questions.forEach(q=>{
+    document.querySelectorAll(`[data-key="${pk}"][data-n="${q.n}"]`).forEach(b=>b.classList.remove('st-sel','st-ok','st-no','st-reveal'));
+    const fb=document.getElementById(`fb-${pk}-${q.n}`);if(fb){fb.style.display='none';fb.textContent='';}
+  });
+  if(pk==='p6'){ddState.dd1=new Set();ddState.dd2=new Set();ddState.dd3=new Set();buildDragDrop();}
+  scores[pk]=0;
+  const el=document.getElementById('score-'+pk);if(el)el.textContent='0';
+  const r=document.getElementById('result-'+pk);if(r){r.style.display='none';r.textContent='';}
+  updateHome();
+}
+
+// ═══════════════════════════════════════
+//  ANSWER KEY
+// ═══════════════════════════════════════
+function buildAK(){
+  const body=document.getElementById('ak-body');if(!body)return;
+  body.innerHTML='';
+  const roman={p1:'I',p2:'II',p3:'III',p4:'IV',p5:'V',p6:'VI',p7:'VII',p8:'VIII',p9:'IX'};
+  Object.keys(data).forEach(pk=>{
+    const sec=data[pk];
+    const div=document.createElement('div');div.className='ak-sect';
+    div.innerHTML=`<div class="ak-sect-title">Part ${roman[pk]} — ${sec.label}</div>`;
+    const grid=document.createElement('div');grid.className='ak-grid';
+    if(pk==='p7'){
+      sec.questions.forEach(q=>{
+        const item=document.createElement('div');item.className='ak-item';
+        const mode=q.mode||'guided';
+        if(mode==='guided'){
+          const toks=q.sentence.filter(t=>t.type==='title');
+          item.innerHTML=`<strong>${q.n}.</strong> ${toks.length?toks.map(t=>`"${t.text}" → ${t.correct}`).join('; '):'Correct as written'}`;
+        } else {
+          const grps={};
+          q.sentence.forEach(t=>{if(t.type==='title'){const g=t.group??'_';if(!grps[g]){grps[g]={w:[],c:t.correct};}grps[g].w.push(t.text);}});
+          const arr=Object.values(grps);
+          item.innerHTML=`<strong>${q.n}.</strong> ${arr.length?arr.map(g=>`"${g.w.join(' ')}" → ${g.c}`).join('; '):'Correct as written'}`;
+        }
+        grid.appendChild(item);
+      });
+    } else {
+      sec.questions.forEach(q=>{
+        const item=document.createElement('div');item.className='ak-item';
+        item.innerHTML=`<strong>${q.n}.</strong> ${q.answer}`;
+        grid.appendChild(item);
+      });
+    }
+    div.appendChild(grid);body.appendChild(div);
+  });
+}
+
+// ═══════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════
+buildHome();
+buildAllPages();
+buildAK();
+setTimeout(()=>{renderAll();updateHome();},0);
+</script>
+</body>
+</html>
