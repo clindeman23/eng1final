@@ -386,7 +386,7 @@ body{font-family:var(--ff-body);background:var(--ink);color:var(--parchment);min
   border-radius:3px;font-family:var(--ff-body);font-style:italic;display:none;
 }
 .fb-ok{background:rgba(45,110,45,0.15);color:#90e090;border-left:2px solid var(--ok-l);}
-.fb-no{background:rgba(139,26,26,0.15);color:#f09090;border-left:2px solid var(--no-l);}
+.fb-no{background:rgba(139,26,26,0.15);color:#f09090;border-left:2px solid var(--no-l);line-height:1.55;}
 
 /* Buttons */
 .btn-row{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-top:1.25rem;}
@@ -1652,7 +1652,7 @@ function checkOne(q){
       if(!isOk) s.title='Should be '+toks[i].correct;
     });
     if(!has) ok=true;
-    showFb(`fb-p7-${q.n}`,ok,has?'✓ Correct!':'✓ No titles here — sentence is already correct.','✗ Check the red titles — incorrect formatting.');
+    showFb(`fb-p7-${q.n}`,ok,has?'✓ Correct!':'✓ No titles here — sentence is already correct.','✗ Check the red titles — incorrect formatting.',hints[q.n]);
   } else {
     document.querySelectorAll(`[data-qn="${q.n}"].word-token`).forEach(s=>{
       const ri=parseInt(s.dataset.ridx),tok=q.sentence[ri];
@@ -1660,7 +1660,7 @@ function checkOne(q){
       const isOk=(p7State[q.n][ri]||'plain')===exp; if(!isOk) ok=false;
       s.classList.remove('chk-ok','chk-no'); s.classList.add(isOk?'chk-ok':'chk-no'); s.dataset.locked='1';
     });
-    showFb(`fb-p7-${q.n}`,ok,'✓ Correct! All titles formatted properly.','✗ Not quite — red words need adjustment.');
+    showFb(`fb-p7-${q.n}`,ok,'✓ Correct! All titles formatted properly.','✗ Not quite — red words need adjustment.',hints[q.n]);
   }
   recalcP7();
 }
@@ -1700,12 +1700,121 @@ function checkAll_p7(){
 }
 
 // ═══════════════════════════════════════
+//  PER-QUESTION HINTS
+// ═══════════════════════════════════════
+const hints = {
+  // Parts of Speech
+  1: '"Ah!" is an expression of emotion with no grammatical connection to the rest of the sentence — that makes it an interjection.',
+  2: '"Her" stands in for a noun (Katniss\'s) and shows possession. Pronouns replace nouns.',
+  3: '"Worst" describes the noun "nightmare" — it tells us what kind. Adjectives modify nouns.',
+  4: '"Most likely" modifies the verb "becomes" — it tells how. Adverbs modify verbs, adjectives, or other adverbs.',
+  5: '"Poorest" describes "District 12" and answers "what kind?" It is an adjective modifying a noun.',
+  6: '"And" connects Katniss and Gale — it joins two nouns. A word that connects words, phrases, or clauses is a conjunction.',
+  7: '"Both" stands alone referring to Katniss and Gale — it is a pronoun, not an adjective, because it is not directly before a noun here.',
+  8: '"Unfortunately" modifies the entire rest of the sentence — it tells how. Adverbs can modify whole clauses.',
+  9: '"Of" shows the relationship between "country" and "Panem." Words that show relationships between nouns are prepositions.',
+  10: '"Everyone" refers to people but does not name them — it replaces a noun group. Indefinite pronouns like everyone, no one, and each are still pronouns.',
+  // Parts of a Sentence
+  11: '"Game Makers" is what the sentence is about — who sends the fireballs? The subject is who or what performs the action.',
+  12: '"Surprised" follows the linking verb "is" and describes Katniss. A predicate adjective follows a linking verb and describes the subject.',
+  13: '"Sister" follows "is" and renames Prim. When a noun follows a linking verb and renames the subject, it is a predicate nominative.',
+  14: '"Rue" answers "gives to whom?" — that is the indirect object. The indirect object comes before the direct object.',
+  15: '"Pulls out" is the verb — it states what Effie does. The predicate includes the verb and all words attached to it.',
+  16: '"Two children" is what the sentence is about — who are chosen? Look past the expletive "There are" to find the real subject.',
+  17: '"Angry" follows "is" and describes Katniss. Predicate adjectives describe the subject after a linking verb.',
+  18: '"Comatose" follows the linking verb "becomes" and describes Katniss\'s mother. It is a predicate adjective.',
+  19: '"Bow-and-arrow" answers "uses what?" — that is the direct object, receiving the action of the verb.',
+  20: '"Arrow" answers "shoots what?" — it directly receives the action of the verb "shoots."',
+  // Capitalization
+  21: 'C is correct. "March 23, 2012" is a specific date (capitalize months) and The Hunger Games is a title. A: "panem" and "president" should be capitalized. D: "Easter Break" — seasons and generic breaks are not capitalized.',
+  22: 'A is correct. The AMC Palace Theater is a specific proper noun. B: "Trilogy" should not be capitalized — it is a common noun. C: "Research Paper Topic List" should not be capitalized as written.',
+  23: 'D is correct. Mockingjay is a book title. A: "christmas" and "regina" need capitals. B: "first class" in the film title needs capitals. C: "Bridge To Terabithia" has an unnecessary capital on "To."',
+  24: 'B is correct. "Art II" and "Latin II" are specific named courses (capitalize). "geometry" without a number is a common subject name and stays lowercase.',
+  25: 'D is correct. "French bread" contains a proper adjective (French). A & B: "earth" and "february" should be capitalized when named. C: the first word of a quotation must be capitalized.',
+  26: 'A is correct — no capitalization errors. B: "disney" should be capitalized. C: "Postman" should not be capitalized. D: "i" must always be capitalized.',
+  27: 'B is correct — "forty-nine states" and "counties" are common nouns, lowercase. A: "Parishes" should not be capitalized mid-sentence. D: "academy" in "Mount Carmel academy" and "boulevard" should be capitalized as part of the proper name.',
+  28: 'A is correct. "MacBook Air" is a proper brand name. B: "Apple Computers" — "computers" here is a common noun. C: "great depression" should be "Great Depression." D: "cinco de mayo" should be capitalized.',
+  29: 'A is correct. "Winter Formal" is the name of a specific event. B: "Fall" as a season is not capitalized. C: "greek" and "roman" should be capitalized as proper adjectives. D: "civic" in "Honda Civic" should be capitalized.',
+  30: 'C is correct. "Mother" is used as a name (no possessive before it), so it is capitalized. A: "President" used generically is not capitalized. B: "Aunt" with a possessive ("My Aunt") — actually debatable, but the key error is elsewhere. D: "Mayor" used generically is not capitalized.',
+  // Complete Sentences
+  31: 'This is a complete sentence — it has a subject (Jennifer Lawrence), a predicate (had to dye), and expresses a complete thought.',
+  32: 'This is a fragment — there is no subject. "Is a blonde" needs a subject: who is a blonde?',
+  33: 'This is a run-on — specifically a comma splice. Two independent clauses ("Katniss\'s goal is…" and "she only becomes concerned…") are joined with just a comma.',
+  34: 'This is a complete sentence — subject: Game Makers; predicate: create muttations; complete thought.',
+  35: 'This is a fragment — "Which include giant dogs and tracker jackers" is a relative clause with no independent clause to attach to. It cannot stand alone.',
+  36: 'This is a complete sentence — subject: Katniss; predicate: creates an alliance. The appositive phrase is extra detail, not a problem.',
+  37: 'This is a run-on (comma splice) — "Rue reminds Katniss of Prim" and "Katniss greatly misses Prim" are two separate complete thoughts joined with only a comma.',
+  38: 'This is a complete sentence — the introductory clause "When she is not in the Hunger Games" is subordinate, but the main clause has a subject and predicate.',
+  39: 'This is a fragment — "Gale vows to make sure Katniss\'s family" has no direct object completing the thought. Make sure what? The sentence is unfinished.',
+  40: 'This is a complete sentence — subject: Katniss; predicate: has a poor relationship.',
+  // Clauses
+  41: '"When Prim is chosen for the Hunger Games" begins with "when" — a subordinating conjunction. It cannot stand alone, so it is a subordinate clause.',
+  42: '"Katniss\'s father taught her how to use a bow-and-arrow" has a subject and verb and makes a complete thought. It is an independent clause.',
+  43: '"Who is alive" modifies "person" and begins with the relative pronoun "who." It depends on the rest of the sentence — subordinate clause.',
+  44: '"While she is in the arena" begins with "while" — a subordinating conjunction. It cannot stand alone.',
+  45: '"Peeta and Katniss are fascinated by the outlandishness of the Capitol" is a complete, standalone thought — independent clause.',
+  46: '"Who is the only Hunger Games victor from District 12" is a relative clause modifying Haymitch. It cannot stand alone — subordinate clause.',
+  47: '"Peeta decorates the cakes in his parents\' bakery" stands alone as a complete thought — independent clause.',
+  48: '"The tributes from each district are given very limited time to say good-bye" is a complete thought on its own — independent clause.',
+  49: '"It is illegal to go beyond the fence that separates District 12 from the woods" makes a complete thought — independent clause.',
+  50: '"Katniss and Gale break this law to feed their families" is a complete thought — independent clause. "However" is just an adverb, not a subordinating conjunction.',
+  // Commas & Semicolons
+  51: 'C is correct. The quoted dialogue "Come to finish me off, sweetheart?" is punctuated correctly — the comma is inside the quotation marks. A: "Katniss who is…" needs commas around the nonessential clause. D: needs a comma before "but."',
+  52: 'A is correct. "nightlock, a type of deadly berry" — the appositive phrase needs a comma before it. B: "Katniss who is only sixteen" needs commas around the nonessential clause. C: "useless, however," creates a comma splice — use a semicolon before "however."',
+  53: 'C is correct. When listing dates with commas already in them, use additional commas to separate items clearly. A: no semicolon needed before "and" in a simple list. B: the semicolons incorrectly separate items in a series.',
+  54: 'D is correct. A semicolon correctly joins two related independent clauses. A: the zip code does not need a comma before it. B: needs a comma after "23" (May 23, 2016). C: no comma needed after "May."',
+  55: 'A is correct — the date March 31, 2011 is properly punctuated. B: needs a comma between "three and a half" and "and William" for clarity. C: run-on sentence with a comma splice. D: unnecessary comma after "name."',
+  56: 'C is correct — no unnecessary commas. A: "D.D.S." follows the name, so it needs commas around it. B: "Jr." after a name needs a comma before it (George Wilson, Jr.). D: no comma needed before "and" when it does not join two independent clauses.',
+  57: 'B is correct. "Amanda" is a nonessential appositive and needs commas on both sides. A: a semicolon should not be used before "and" when joining short independent clauses — use a comma or period. D: "Jazz Fest but" needs a comma before "but."',
+  58: 'A is correct. "Cherie, not Catherine," — the interrupter "not Catherine" needs commas on both sides. B: "cold, wet" — "wet" and "rainy" are closely linked, so no comma between them. C: no comma between "blue" and "eyeglasses."',
+  59: 'B is correct — no punctuation errors. A: a semicolon should not be used before "and." C: no comma needed after "poem" before the title. D: "Juliet" is being directly addressed — needs a comma: "Juliet, do you know…"',
+  60: 'D is correct — properly punctuated with the comma inside quotation marks. A: no comma between "commas" and "and." B: too many commas before "and." C: missing comma after "pronouns" before the closing quotation mark.',
+  // Italics & Quotation Marks
+  61: 'People is a magazine — a standalone publication. Magazines get italics, not quotation marks.',
+  62: 'Entertainment Tonight is a standalone TV show (series). TV series titles are italicized.',
+  63: 'No titles present — the question mark goes inside the quotation marks. This sentence is already correctly punctuated.',
+  64: 'Finding Dory is a film — a standalone work. Films are italicized.',
+  65: 'The Star Spangled Banner is a song title within a quote — it gets single quotation marks (a quote within a quote).',
+  66: 'The Addams Family is a theatrical production (play/musical) — a standalone work that gets italics.',
+  67: 'The Mona Lisa is a standalone work of art. Works of visual art are italicized.',
+  68: 'No titles to format here — the sentence is already correctly punctuated with proper quotation marks.',
+  69: 'X-Men: First Class is a film (italics). Monk and Medium are TV episode titles or short TV show names used in quotes within the sentence — they get quotation marks.',
+  70: 'The Hunger Games and Scrubs are standalone works (italics). "My Own Worst Enemy" is an episode title — part of a larger work — so it gets quotation marks.',
+  // Subject-Verb Agreement
+  71: 'C is correct. "Katniss uses her dad\'s" — singular subject, singular verb, correct pronoun. A: "his or her families" — Gale and Katniss is plural, needs "their." B: "each are" — "each" is always singular.',
+  72: 'B is correct. "Peeta, who ices cakes" — the relative clause matches Peeta (singular). A: "Katniss and Gale, who is" — compound subject needs "who are." C: "Both boys is" — "both" is plural.',
+  73: 'A is correct. With "either…or," the verb agrees with the closer subject ("a pair of tributes" → singular "is"). D: "neither…nor" — the verb agrees with "father" (singular), so "believes," not "believe."',
+  74: 'C is correct. "Creating…was" — gerund phrase is singular. A: "Katniss bring" — should be "brings." B: "students loves" — "some" with a plural noun takes a plural verb.',
+  75: 'C is correct. "Four days of exams seem" — "four days" is plural. A: "freshmen class was" — collective noun, but "freshmen" is plural here; this one is debatable. D: "ten dollars…was" — a sum of money is singular.',
+  76: 'C is correct. "Few of the students were" — "few" is always plural. B: "Curious George are" — a book title is singular, even if it looks plural. D: "All of the senior class are" — "all" with a singular collective noun takes singular.',
+  77: 'D is correct. "None of the article was" — "none" here refers to a singular noun (article). A: "their letter to herself" — pronoun mismatch. B: "Someone left their" — "someone" is singular, use "his or her." C: "it could not find his or her ball" is acceptable but awkward.',
+  78: 'A is correct. "Do…the twins want" — with "or," verb agrees with the closer subject (twins → plural). B: "either are" — "either" is singular. C: "Every boy and girl look" — "every…and" takes singular.',
+  79: 'A is correct. "No one knows" — "no one" is always singular. B: "Chris or Jess…their" — "or" with singular subjects needs singular pronoun. C: "it belong" — should be "belongs." D: "return them" — antecedent is singular.',
+  80: 'D is correct. "We are going to be freshmen" — plural subject, plural verb, no errors. A: "the study guide are" — singular subject needs "is." C: "there weren\'t an exam" — should be "wasn\'t."',
+  // Effective Sentences
+  81: 'B is correct. Using "when" creates a subordinate clause that shows the relationship between the two ideas — tighter and clearer than a semicolon.',
+  82: 'B is correct. Breaking the sentence into two prevents it from becoming too long and wordy. The ideas are separated at a natural break.',
+  83: 'A is correct. "Which was released in 2013" is a relative clause that smoothly integrates the extra detail without creating a choppy separate sentence.',
+  84: 'B is correct. A is a comma splice — two independent clauses joined with only a comma. Adding "and" fixes it.',
+  85: 'B is correct. "She will do this over the summer" is redundant — "over the summer" can simply be attached to the original clause.',
+  86: 'B is correct. Using "but" to join the two contrasting ideas is smoother than repeating "Katniss" in two short choppy sentences.',
+  87: 'A is correct. A semicolon correctly joins two closely related independent clauses. B is a comma splice — two independent clauses joined with only a comma.',
+  88: 'B is correct. "But" signals the contrast between Gale and Katniss — one smooth compound sentence is better than two short choppy ones.',
+  89: 'A is correct. One sentence that presents the contrast ("whether Peeta or Gale") is more concise than two sentences that repeat the same setup.',
+  90: 'A is correct. The semicolon with "on the other hand" elegantly contrasts the two ideas in one sentence. B loses the transitional phrase, making the contrast less clear.',
+};
+
+// ═══════════════════════════════════════
 //  CHECK / RESET SECTIONS
 // ═══════════════════════════════════════
-function showFb(id,ok,okMsg,noMsg){
+function showFb(id, ok, okMsg, noMsg, hint){
   const el=document.getElementById(id); if(!el) return;
   el.style.display='block'; el.className='q-feedback '+(ok?'fb-ok':'fb-no');
-  el.textContent=ok?okMsg:noMsg;
+  if(ok){
+    el.textContent=okMsg;
+  } else {
+    el.innerHTML=`<span style="display:block;margin-bottom:.25rem;">${noMsg}</span>${hint?`<span style="display:block;font-size:.8rem;opacity:.85;border-top:1px solid rgba(255,255,255,0.1);padding-top:.25rem;margin-top:.1rem;">${hint}</span>`:''}`;
+  }
 }
 
 function checkSec(pk){
@@ -1720,7 +1829,7 @@ function checkSec(pk){
       if(b.dataset.choice===correct) b.classList.add('st-reveal');
       if(b.dataset.choice===user&&!ok) b.classList.add('st-no');
     });
-    showFb(`fb-${pk}-${n}`,ok,'✓ Correct!',`✗ The answer is: ${correct}`);
+    showFb(`fb-${pk}-${n}`,ok,'✓ Correct!',`✗ The answer is: ${correct}`,hints[n]);
   });
   scores[pk]=score;
   const el=document.getElementById('score-'+pk); if(el) el.textContent=score;
